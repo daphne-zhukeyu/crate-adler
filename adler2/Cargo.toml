@@ -1,0 +1,37 @@
+[package]
+name = "adler2"
+version = "2.0.1"
+authors = ["Jonas Schievink <jonasschievink@gmail.com>", "oyvindln <oyvindln@users.noreply.github.com>"]
+description = "adler2 2.0.1 annotated for Verus; see ../VERIFICATION.md"
+repository = "https://github.com/oyvindln/adler2"
+readme = "README.md"
+license = "0BSD OR MIT OR Apache-2.0"
+edition = "2021"
+publish = false
+
+[[bench]]
+name = "bench"
+harness = false
+
+[dependencies]
+# Supplies the `verus!` macro and `vstd::prelude` for plain `cargo build`/`cargo test`
+# (ghost code is erased). Matches Verus release 0.2026.10.04.426d8b0.
+vstd = { version = "=0.0.0-2026-10-04-0306", default-features = false }
+# Internal features, only used when building as part of libstd, not part of the
+# stable interface of this crate.
+core = { version = '1.0.0', optional = true, package = 'rustc-std-workspace-core' }
+
+[features]
+# Disable default features to enable `#![no_std]` support.
+default = ["std"]
+std = []
+
+# Internal feature, only used when building as part of libstd, not part of the
+# stable interface of this crate.
+rustc-dep-of-std = ['core']
+
+[package.metadata.verus]
+verify = true
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(verus_only)', 'cfg(verus_keep_ghost)', 'cfg(docsrs)'] }
