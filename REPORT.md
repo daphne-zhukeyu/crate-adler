@@ -20,7 +20,7 @@ writing the linking proofs. The two specs cover 7 functions in common (`new`, `d
 `from_checksum`, `checksum`, `finish`, `write_slice`/`write`, `adler32_slice`). Claude's spec
 implies the gold spec for 6 of 7, and the gold spec implies Claude's for 6 of 7. The exception,
 in both directions, is `write_slice` on a state restored by `from_checksum` from a value that is
-not an Adler-32 checksum: the gold spec (a natural reading of the docs) says an empty write leaves
+not an Adler-32 checksum: the gold spec says an empty write leaves
 such a state untouched, while the code, and Claude's spec of it, reduce both fields modulo 65521
 on every write. The two specs agree for every canonical state and for every non-empty write
 (verified as separate obligations), and the disagreement is exhibited by computation. This is
