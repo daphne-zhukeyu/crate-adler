@@ -1,0 +1,11 @@
+# cwd: /home/zhukeyu/crate-adler2/adler2
+# cmd: env PATH=/home/zhukeyu/verus-0.2026.10.04/verus-x86-linux:/home/zhukeyu/.local/bin:/home/zhukeyu/.vscode-server/cli/servers/Stable-6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1/server/bin/remote-cli:/home/zhukeyu/.local/bin:/home/zhukeyu/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin cargo verus verify
+# date: 2026-11-04T22:54:04Z
+
+    Checking adler2 v2.0.1 (/home/zhukeyu/crate-adler2/adler2)
+Error: could not find .vir file for 'adler2'
+error: could not compile `adler2` (lib)
+
+Caused by:
+  process didn't exit successfully: `/home/zhukeyu/verus-0.2026.10.04/verus-x86-linux/verus /home/zhukeyu/.rustup/toolchains/1.98.1-x86_64-unknown-linux-gnu/bin/rustc --crate-name adler2 --edition=2021 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --warn=unexpected_cfgs --check-cfg 'cfg(verus_only)' --check-cfg 'cfg(verus_keep_ghost)' --check-cfg 'cfg(docsrs)' --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values("core", "default", "rustc-dep-of-std", "std"))' -C metadata=83a5906e9672ed01 -C extra-filename=-3fcd36c3ed4648e9 --out-dir /home/zhukeyu/crate-adler2/adler2/target/debug/deps -C incremental=/home/zhukeyu/crate-adler2/adler2/target/debug/incremental -L dependency=/home/zhukeyu/crate-adler2/adler2/target/debug/deps --extern vstd=/home/zhukeyu/crate-adler2/adler2/target/debug/deps/libvstd-d4207669577aa1a2.rmeta -Z checksum-hash-algorithm=blake3` (exit status: 1)
+# exit: 101

@@ -1,0 +1,46 @@
+# cwd: /home/zhukeyu/crate-adler2/adler2
+# cmd: cargo test
+# date: 2026-11-04T22:53:06Z
+
+   Compiling adler2 v2.0.1 (/home/zhukeyu/crate-adler2/adler2)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.17s
+     Running unittests src/lib.rs (target/debug/deps/adler2-aecad4033e484037)
+
+running 6 tests
+test tests::wiki ... ok
+test tests::mixed ... ok
+test tests::zeroes ... ok
+test tests::ones ... ok
+test tests::resume ... ok
+test tests::bufread ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/doc_findings.rs (target/debug/deps/doc_findings-7876bc7505cdc3da)
+
+running 4 tests
+test d1_from_checksum_non_canonical_state ... ok
+test d3_adler32_bufread_error_and_chunking ... ok
+test d4_wikipedia_vector_from_docs ... ok
+test d2_from_checksum_roundtrip_on_canonical_states ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/trusted_model.rs (target/debug/deps/trusted_model-40843f4bda8372a3)
+
+running 1 test
+test chunks_exact_model_matches_std ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+   Doc-tests adler2
+
+running 4 tests
+test src/lib.rs - adler32 (line 251) - compile ... ok
+test src/lib.rs - Adler32 (line 58) ... ok
+test src/lib.rs - Adler32 (line 71) ... ok
+test src/lib.rs - Adler32::from_checksum (line 132) ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+# exit: 0

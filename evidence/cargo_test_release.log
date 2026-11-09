@@ -1,0 +1,61 @@
+# cwd: /home/zhukeyu/crate-adler2/adler2
+# cmd: cargo test --release
+# date: 2026-11-04T22:53:06Z
+
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling verus_prettyplease v0.0.0-2026-09-06-0133
+   Compiling equivalent v1.0.3
+   Compiling hashbrown v0.17.1
+   Compiling vstd v0.0.0-2026-10-04-0306
+   Compiling convert_case v0.4.0
+   Compiling verus_builtin v0.0.0-2026-09-16-0054
+   Compiling indexmap v2.14.2
+   Compiling verus_syn v0.0.0-2026-09-06-0133
+   Compiling syn v2.0.119
+   Compiling synstructure v0.13.2
+   Compiling verus_state_machines_macros v0.0.0-2026-09-06-0133
+   Compiling verus_builtin_macros v0.0.0-2026-09-20-0158
+   Compiling adler2 v2.0.1 (/home/zhukeyu/crate-adler2/adler2)
+    Finished `release` profile [optimized] target(s) in 5.29s
+     Running unittests src/lib.rs (target/release/deps/adler2-5e2addf3b56e7475)
+
+running 6 tests
+test tests::wiki ... ok
+test tests::mixed ... ok
+test tests::ones ... ok
+test tests::zeroes ... ok
+test tests::bufread ... ok
+test tests::resume ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/doc_findings.rs (target/release/deps/doc_findings-285951fb6d1d8387)
+
+running 4 tests
+test d1_from_checksum_non_canonical_state ... ok
+test d3_adler32_bufread_error_and_chunking ... ok
+test d4_wikipedia_vector_from_docs ... ok
+test d2_from_checksum_roundtrip_on_canonical_states ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/trusted_model.rs (target/release/deps/trusted_model-08c1f38d3bb054e7)
+
+running 1 test
+test chunks_exact_model_matches_std ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests adler2
+
+running 4 tests
+test src/lib.rs - adler32 (line 251) - compile ... ok
+test src/lib.rs - Adler32 (line 58) ... ok
+test src/lib.rs - Adler32::from_checksum (line 132) ... ok
+test src/lib.rs - Adler32 (line 71) ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+# exit: 0

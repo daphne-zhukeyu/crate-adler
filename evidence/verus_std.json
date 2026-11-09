@@ -1,0 +1,2322 @@
+{
+  "func-details": {
+    "lib::Adler32::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::MulAssignSpec::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::RemAssignSpec::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::impl&%0::arrow_Some_0": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%9::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%0::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%17::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%157::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%147::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%19::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::VecAdditionalSpecFns::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%159::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%109::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::is_none": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%11::new": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::iter::impl&%90::next": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::Default::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::push_distributes_over_add": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%11::decrease": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::trusted::chunks_exact_rest": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::raw_ptr::impl&%2::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::lemma_slice_index_decreases": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::pervasive::FnWithRequiresEnsures::ensures": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_update_same": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%101::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%26::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::subrange": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%9::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%13::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_mod_twice": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_add_index1": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%34::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::array::impl&%20::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%7::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_adler_from_unreduced": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::push": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::FromSpec::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::axiom_vec_has_resolved": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%42::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%28::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%44::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%60::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::update": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%34::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::impl&%2::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%14::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::ArrayAdditionalSpecFns::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%147::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%17::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::OptionAdditionalFns::arrow_0": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::array_as_slice": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%10::decrease": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%56::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::RemAssignSpec::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%474::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::axiom_array_has_resolved": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_update_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::pack": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%32::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%43::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::trusted::chunks_exact_rem": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_mod_multiples_basic": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%42::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%38::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%22::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%15::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%11::obeys_prophetic_iter_laws": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%479::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%33::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%20::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::axiom_spec_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lanes_partial": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%0::obeys_prophetic_iter_laws": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%155::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%8::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%54::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%38::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%145::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::IteratorSpec::peek": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%34::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_combine": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%25::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%46::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%104::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::write": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%61::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%0::decrease": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lanes_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%109::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::axiom_spec_array_update": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::convert::From::from": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lane_ok": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%7::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::array_fill_for_copy_types": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%18::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%64::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::skip": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%111::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%102::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::array_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::IteratorSpec::will_return_none": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%111::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lane_step": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lanes": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::array::impl&%13::into_iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::pervasive::strictly_cloned": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%11::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::write_slice": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::sum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%47::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%108::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%9::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%106::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%33::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::axiom_spec_slice_update": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%15::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::string::axiom_str_literal_get_char": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%62::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%58::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%4::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%344::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%5::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::impl&%3::remaining": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%6::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%54::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%411::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%471::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_new_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%32::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%109::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%17::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::spec_slice_update": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::spec_unwrap_or": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%15::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%11::seq": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::new": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::new": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::trigger_peek_implications": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::AddAssignSpec::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%29::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%105::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%27::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::spec_index_range": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%10::obeys_prophetic_iter_laws": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%41::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%157::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%11::peek": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%24::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::string::strlit_view_id": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%6::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_mod_rep": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%30::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%146::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::pervasive::arbitrary": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%143::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::IteratorSpec::obeys_prophetic_iter_laws": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%12::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%62::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%1::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::add": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%108::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%11::will_return_none": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%16::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::AddAssignSpec::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::axiom_nonzero_is_not_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%12::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%105::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%110::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%1::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::take": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%21::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%158::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%10::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::spec_array_update": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::AddAssign::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::iter::traits::iterator::Iterator::next": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_sum_bounds": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::spec_array_fill_for_copy_type": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%103::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::impl&%0::arrow_0": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::empty": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%16::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::spec_slice_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%22::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%62::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::impl&%0::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::pervasive::cloned": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%64::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%57::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%26::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%101::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%59::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%37::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::impl&%0::len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%412::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::boxed::impl&%11::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::AddAssignSpec::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%61::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%145::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::vec::impl&%12::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%103::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%58::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::impl&%1::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%60::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%39::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%20::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lane_prefix": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_add_mod_noop": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%107::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%40::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%63::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_push_index_different": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::drop_first": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%105::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%24::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::raw_ptr::ptrs_mut_eq": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%347::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%415::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::axiom_vec_decreases_to_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%58::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_empty": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::adler32_test_vectors": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%19::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::IteratorSpec::remaining": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::iter::traits::collect::impl&%0::into_iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%49::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::str::impl&%2::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%14::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%112::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::MulAssign::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::impl&%3::peek": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%11::remaining": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%28::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::axiom_spec_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_ext_equal": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::b_vec_bound": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%158::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::MulAssignSpec::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::spec_index_range_from": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_subrange_decreases": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%155::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lanes_sum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%5::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%25::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::is_some": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%148::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::DeepView::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::rc::impl&%38::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::axiom_slice_ext_equal": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%11::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::adler_from": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%1::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%35::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%48::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lanes_to_partial": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%340::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::iter::impl&%88::remainder": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%24::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lanes_reduce": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%36::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%40::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::len%returns_clause_autospec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%349::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%55::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::spec_unwrap": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%155::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%57::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%6::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::array_len_matches_n": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%55::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%21::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%55::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::lemma_as_ref_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%26::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::string::axiom_new_strlit_view_id": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%145::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%32::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%59::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%59::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%2::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_small_mod_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%156::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::spec_index_range_to": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%44::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::function::axiom_fn_mut_call_requires": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%345::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_wsum_bound": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::vec::impl&%17::into_iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::option::impl&%6::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%8::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%470::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%64::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%11::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%2::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_sum_append": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::vec_clone_trigger": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::raw_ptr::impl&%3::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%104::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%407::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%346::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%16::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::IteratorSpec::decrease": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%53::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%148::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%111::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%108::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%106::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%18::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::add_empty_right": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lanes_partial_step": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%0::will_return_none": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::axiom_vec_index_decreases": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%11::wf_inner": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::tri": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%107::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%3::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::compute": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lane_sum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::impl&%0::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_add_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%342::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::MulAssignSpec::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%11::wf": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%112::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%146::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%103::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%146::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%468::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::prefix_sum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%18::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%10::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%156::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%10::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%147::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%8::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::Clone::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%406::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::impl&%2::spec_add": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%32::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%41::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::axiom_slice_decreases_to_seq": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%53::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::axiom_spec_slice_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%63::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::vec::impl&%18::into_iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%25::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_add_index2": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::from": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%13::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%40::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%11::next": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::impl&%0::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%10::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%56::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%107::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%15::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%35::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%0::remaining": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%16::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::axiom_spec_array_as_slice": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::boxed::impl&%15::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::impl&%3::will_return_none": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%160::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%8::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%36::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%14::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_update_different": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "verus_builtin::impl&%9::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%35::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::impl&%0::compute::CHUNK_SIZE": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%414::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::tuple::impl&%16::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%160::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::impl&%0::compute::MOD": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%7::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%26::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::wsum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_small_mod": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%143::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%22::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::function::axiom_fn_mut_call_ensures": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_fundamental_div_mod": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%2::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%341::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "verus_builtin::impl&%7::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%6::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::impl&%3::decrease": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%9::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%13::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%37::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_subrange_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::View::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%27::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%159::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::finish": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%106::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%56::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_prefix_sum_bound": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%10::remaining": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%0::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::impl&%1::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%57::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%27::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_mod_multiples_vanish": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%102::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%61::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::nonzero_spec_get": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::adler32_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%472::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%475::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%33::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%348::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_index_decreases": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%8::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%9::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%30::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%39::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%408::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::impl&%0::iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%20::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::raw_ptr::view_reverse_for_eq": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::axiom_slice_has_resolved": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%30::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%28::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%156::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%144::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%29::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%54::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%405::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%10::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%19::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::axiom_array_decreases_to_seq": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%112::obeys_mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::SliceAdditionalSpecFns::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::FromSpec::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::as_ref": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::RemAssignSpec::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%10::peek": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%343::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%104::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%1::unref": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%143::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%404::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_subrange_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%53::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%37::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::vec_clone_deep_view_proof": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%0::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::group_fits": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%21::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::axiom_array_ext_equal": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::axiom_spec_array_fill_for_copy_type": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::impl&%0::chunks_exact": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_push_index_same": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::lemma_array_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%351::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%30::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::into_iter_elts": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%24::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::raw_ptr::ptrs_mut_eq_sized": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::adler_step": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::string::axiom_str_literal_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%478::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%23::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%148::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_b_vec_bound": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_sub_mod_noop": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::impl&%2::spec_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%60::add_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%23::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::obeys_add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "alloc::sync::impl&%62::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%473::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_tri": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lane_wsum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::iter::impl&%1::into_iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%158::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%159::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::algo::U32X4::rem_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%413::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::into_iter_elts": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%39::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%5::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::slice::spec_slice_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%0::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::drop_last": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%23::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%38::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%22::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%41::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%101::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%157::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_new_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::ZeroablePrimitiveSpec::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%16::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::iter::traits::collect::IntoIterator::into_iter": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_ext_equal_deep": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%16::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::default::impl&%7::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%29::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::adler32_slice": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lanes_wsum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%14::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lanes_reduced": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq_lib::impl&%0::add_empty_left": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%18::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%20::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%110::mul_assign_req": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::lemma_array_index_decreases": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%11::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::slice::impl&%0::split_at": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%0::peek": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%477::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%469::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::impl&%3::obeys_prophetic_iter_laws": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_lanes_partial_bounds": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%476::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::rust_rem": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%14::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%3::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%31::deep_view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::option::OptionAdditionalFns::arrow_Some_0": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::slice::impl&%10::will_return_none": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%31::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%36::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::default": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::num::nonzero::impl&%0::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%160::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_push_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%102::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::array::spec_array_as_slice": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::trusted::chunks_exact_size": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::pervasive::impl&%0::ensures": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::checksum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%12::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%63::add_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::clone::impls::impl&%12::clone": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%410::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::RemAssign::rem_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::arithmetic::div_mod::lemma_mod_bound": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%4::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%409::mul_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::raw_ptr::view_reverse_for_eq_sized": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::lemma_b_chunk": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%28::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%144::obeys_rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::iter::impl&%11::index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::string::impl&%0::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::Adler32::from_checksum": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::Seq::last": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "lib::spec::base": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::seq::lemma_seq_two_subranges_index": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%144::rem_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%31::obeys_from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::nonzero::impl&%0::is_zero": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::vec::spec_vec_len": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::ops::impl&%110::mul_assign_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "core::ops::arith::impl&%350::add_assign": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::std_specs::convert::impl&%7::from_spec": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    },
+    "vstd::view::impl&%4::view": {
+      "obligation_proof_notes": [],
+      "failed_proof_notes": []
+    }
+  },
+  "verification-results": {
+    "encountered-error": false,
+    "encountered-vir-error": false,
+    "success": true,
+    "verified": 68,
+    "errors": 0,
+    "is-verifying-entire-crate": true
+  },
+  "verus": {
+    "profile": "release",
+    "version": "0.2026.10.04.426d8b0",
+    "platform": {
+      "os": "linux",
+      "arch": "x86_64"
+    },
+    "toolchain": "1.98.1-x86_64-unknown-linux-gnu (overridden by environment variable RUSTUP_TOOLCHAIN)",
+    "commit": "426d8b01e7ffb910a36c15e1f870ff985bb61eef"
+  }
+}

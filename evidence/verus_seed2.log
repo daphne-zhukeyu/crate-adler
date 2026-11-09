@@ -1,0 +1,6 @@
+# cwd: /home/zhukeyu/crate-adler2/adler2
+# cmd: /home/zhukeyu/verus-0.2026.10.04/verus-x86-linux/verus --crate-type=lib --edition 2021 --cfg feature="std" --smt-option smt.random_seed=2 src/lib.rs
+# date: 2026-11-04T22:52:51Z
+
+verification results:: 68 verified, 0 errors
+# exit: 0

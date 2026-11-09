@@ -1,0 +1,28 @@
+# cmd: /home/zhukeyu/verus-0.2026.10.04/verus-x86-linux/verus --crate-type=lib --edition 2021 --no-cheating compare.rs
+# date: Sun 08 Nov 2026 10:16:20 PM UTC
+error: postcondition not satisfied
+   --> links.rs:220:9
+    |
+220 |           new == hv(h::write_slice_next(old, bytes)),
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ failed this postcondition
+221 |   {
+222 | /     if bytes.len() > 0 || canonical(old) {
+223 | |         lemma_fold_agree(old, bytes);
+224 | |     }
+    | |_____- at the end of the function body
+
+error: postcondition not satisfied
+   --> links.rs:231:9
+    |
+231 |           new == c::adler_from(old.0 as int % 65521, old.1 as int % 65521, bytes),
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ failed this postcondition
+232 |   {
+233 | /     if bytes.len() > 0 || canonical(old) {
+234 | |         lemma_fold_agree(old, bytes);
+235 | |     }
+    | |_____- at the end of the function body
+
+verification results:: 62 verified, 2 errors
+error: aborting due to 2 previous errors
+
+# exit: 1

@@ -1,0 +1,47 @@
+# cwd: /home/zhukeyu/crate-adler2/adler2
+# cmd: /home/zhukeyu/verus-0.2026.10.04/verus-x86-linux/verus --crate-type=lib --edition 2021 --no-cheating --cfg feature="std" src/lib.rs
+# date: 2026-11-04T22:52:48Z
+
+error: external_body/assume_specification not allowed with --no-cheating
+  --> src/trusted.rs:24:1
+   |
+24 | pub uninterp spec fn chunks_exact_rest<'a, T>(it: ChunksExact<'a, T>) -> Seq<T>;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: external_body/assume_specification not allowed with --no-cheating
+  --> src/trusted.rs:27:1
+   |
+27 | pub uninterp spec fn chunks_exact_size<'a, T>(it: ChunksExact<'a, T>) -> usize;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: external_body/assume_specification not allowed with --no-cheating
+  --> src/trusted.rs:30:1
+   |
+30 | pub uninterp spec fn chunks_exact_rem<'a, T>(it: ChunksExact<'a, T>) -> Seq<T>;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: external_body/assume_specification not allowed with --no-cheating
+  --> src/trusted.rs:33:1
+   |
+33 | / pub assume_specification<'a, T>[ <[T]>::chunks_exact ](s: &'a [T], chunk_size: usize) -> (it:
+34 | |     ChunksExact<'a, T>)
+   | |______________________^
+
+error: external_body/assume_specification not allowed with --no-cheating
+  --> src/trusted.rs:44:1
+   |
+44 | / pub assume_specification<'a, T>[ ChunksExact::<'a, T>::remainder ](it: &ChunksExact<'a, T>) -> (r:
+45 | |     &'a [T])
+   | |___________^
+
+error: external_body/assume_specification not allowed with --no-cheating
+  --> src/trusted.rs:51:1
+   |
+51 | / pub assume_specification<'a, T>[ <ChunksExact<'a, T> as Iterator>::next ](
+52 | |     it: &mut ChunksExact<'a, T>,
+53 | | ) -> (r: Option<&'a [T]>)
+   | |________________________^
+
+error: aborting due to 6 previous errors
+
+# exit: 1

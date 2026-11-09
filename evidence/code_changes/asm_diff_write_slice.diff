@@ -1,0 +1,11 @@
+--- upstream
++++ annotated
+@@ -1,2 +1,2 @@
+-_RNvMCsHASH_6adler2NtB2_7Adler3211write_slice:
++_RNvMs_CsHASH_6adler2NtB4_7Adler3211write_slice:
+ 	.cfi_startproc
+@@ -267,3 +267,3 @@
+ .Lfunc_end:
+-	.size	_RNvMCsHASH_6adler2NtB2_7Adler3211write_slice, .Lfunc_end-_RNvMCsHASH_6adler2NtB2_7Adler3211write_slice
++	.size	_RNvMs_CsHASH_6adler2NtB4_7Adler3211write_slice, .Lfunc_end-_RNvMs_CsHASH_6adler2NtB4_7Adler3211write_slice
+ 	

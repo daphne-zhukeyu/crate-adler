@@ -1,0 +1,24 @@
+# cwd: /home/zhukeyu/crate-adler2/adler2
+# cmd: env PATH=/home/zhukeyu/verus-0.2026.10.04/verus-x86-linux:/home/zhukeyu/.local/bin:/home/zhukeyu/.vscode-server/cli/servers/Stable-6d62b1d5dace93a33b3a6d3eca1317bd5e15bcb1/server/bin/remote-cli:/home/zhukeyu/.local/bin:/home/zhukeyu/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin cargo verus verify --no-default-features
+# date: 2026-11-04T22:53:42Z
+
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling verus_prettyplease v0.0.0-2026-09-06-0133
+   Compiling hashbrown v0.17.1
+   Compiling equivalent v1.0.3
+   Compiling vstd v0.0.0-2026-10-04-0306
+   Compiling convert_case v0.4.0
+    Checking verus_builtin v0.0.0-2026-09-16-0054
+   Compiling indexmap v2.14.2
+   Compiling verus_syn v0.0.0-2026-09-06-0133
+   Compiling syn v2.0.119
+   Compiling synstructure v0.13.2
+   Compiling verus_builtin_macros v0.0.0-2026-09-20-0158
+   Compiling verus_state_machines_macros v0.0.0-2026-09-06-0133
+verification results:: 1876 verified, 0 errors
+    Checking adler2 v2.0.1 (/home/zhukeyu/crate-adler2/adler2)
+verification results:: 68 verified, 0 errors
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 22.11s
+# exit: 0

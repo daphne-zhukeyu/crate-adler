@@ -1,0 +1,10 @@
+# cwd: /home/zhukeyu/crate-adler2/bench_compare
+# cmd: ./run.sh
+# date: 2026-11-04T22:54:04Z
+
+# sources of up/ vs ../upstream/src:
+identical
+round 0: upstream 16.15 GB/s, annotated 16.49 GB/s (results equal)
+round 1: upstream 16.47 GB/s, annotated 16.44 GB/s (results equal)
+round 2: upstream 16.45 GB/s, annotated 16.46 GB/s (results equal)
+# exit: 0

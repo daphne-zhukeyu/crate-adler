@@ -1,0 +1,20 @@
+# cwd: /home/zhukeyu/crate-adler2
+# cmd: env VERUS=/home/zhukeyu/verus-0.2026.10.04/verus-x86-linux/verus python3 -I negative_controls.py
+# date: 2026-11-04T22:53:12Z
+
+N0 rejected: sanity: `assert(false)` in compute (would pass only if the context were inconsistent)  [error: assertion failed]
+N1 rejected: chunk one group too long (b_vec can overflow)  [error: precondition not satisfied]
+N2 rejected: wrong modulus  [error: precondition not satisfied]
+N3 rejected: combine step drops lane-1 correction  [error: precondition not satisfied]
+N4 rejected: combine step uses weight 2 for lane 3  [error: precondition not satisfied]
+N5 rejected: combine step scales by 3  [error: precondition not satisfied]
+N6 rejected: full chunks forget the b += n*a term  [error: precondition not satisfied]
+N7 rejected: final reduction of a_vec dropped (MOD - a_vec may underflow)  [error: precondition not satisfied]
+N8 rejected: serial tail updates b before a  [error: invariant not satisfied at end of loop body]
+N9 rejected: U32X4 += mixes lanes  [error: possible arithmetic underflow/overflow]
+N10 rejected: wrong initial state  [error: postcondition not satisfied]
+N11 rejected: checksum packs a and b the wrong way round  [error: postcondition not satisfied]
+N12 rejected: from_checksum takes the wrong bits for b  [error: postcondition not satisfied]
+N13 rejected: spec typo: wrong modulus (caught by the test vectors)  [error: assertion failed]
+rejected 14, problems 0
+# exit: 0

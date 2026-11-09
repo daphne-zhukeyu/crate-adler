@@ -1,0 +1,2013 @@
+// WARNING: This output format is intended for human consumers only
+// and is subject to change without notice. Knock yourself out.
+// HINT: See also -Z dump-mir for MIR at specific points during compilation.
+fn algo::<impl at src/algo.rs:4:1: 4:13>::compute(_1: &mut Adler32, _2: &[u8]) -> () {
+    debug self => _1;
+    debug bytes => _2;
+    let mut _0: ();
+    let mut _3: u32;
+    let mut _4: u16;
+    let mut _6: u16;
+    let mut _8: [u32; 4];
+    let mut _12: (&[u8], &[u8]);
+    let mut _13: usize;
+    let mut _14: usize;
+    let mut _15: usize;
+    let mut _19: std::option::Option<&[u8]>;
+    let mut _21: std::slice::ChunksExact<'_, u8>;
+    let mut _23: std::option::Option<&[u8]>;
+    let mut _26: u32;
+    let mut _27: u32;
+    let _28: ();
+    let mut _29: &mut algo::U32X4;
+    let _30: ();
+    let mut _31: &mut algo::U32X4;
+    let mut _32: std::slice::ChunksExact<'_, u8>;
+    let mut _34: std::option::Option<&[u8]>;
+    let mut _37: u32;
+    let mut _38: u32;
+    let mut _39: usize;
+    let mut _40: u32;
+    let _41: ();
+    let mut _42: &mut algo::U32X4;
+    let _43: ();
+    let mut _44: &mut algo::U32X4;
+    let mut _45: u32;
+    let mut _46: u32;
+    let mut _47: u32;
+    let mut _48: u32;
+    let mut _49: u32;
+    let mut _50: u32;
+    let mut _51: u32;
+    let mut _52: u32;
+    let mut _53: std::slice::Iter<'_, u32>;
+    let mut _54: &[u32];
+    let mut _55: &[u32; 4];
+    let mut _56: std::option::Option<&u32>;
+    let mut _58: std::slice::Iter<'_, u32>;
+    let mut _59: &[u32];
+    let mut _60: &[u32; 4];
+    let mut _61: std::option::Option<&u32>;
+    let mut _63: std::slice::Iter<'_, u8>;
+    let mut _64: std::option::Option<&u8>;
+    let mut _66: u32;
+    let mut _67: u32;
+    let mut _68: u32;
+    let mut _69: u32;
+    let mut _70: &u32;
+    let mut _71: &u32;
+    let mut _72: &u8;
+    let mut _183: [u32; 4];
+    let mut _184: [u32; 4];
+    let mut _185: [u32; 4];
+    let mut _186: [u32; 4];
+    scope 1 {
+        debug a => _3;
+        let mut _5: u32;
+        scope 2 {
+            debug b => _5;
+            let mut _7: algo::U32X4;
+            scope 3 {
+                debug a_vec => _7;
+                let mut _9: algo::U32X4;
+                scope 4 {
+                    debug b_vec => _9;
+                    let _10: &[u8];
+                    let _11: &[u8];
+                    scope 5 {
+                        debug bytes => _10;
+                        debug remainder => _11;
+                        let _16: std::slice::ChunksExact<'_, u8>;
+                        scope 6 {
+                            debug chunk_iter => _16;
+                            let _17: &[u8];
+                            scope 7 {
+                                debug remainder_chunk => _17;
+                                let mut _18: std::slice::ChunksExact<'_, u8>;
+                                let mut _33: std::slice::ChunksExact<'_, u8>;
+                                scope 8 {
+                                    debug iter => _18;
+                                    let _20: &[u8];
+                                    scope 9 {
+                                        debug chunk => _20;
+                                        let mut _22: std::slice::ChunksExact<'_, u8>;
+                                        scope 10 {
+                                            debug iter => _22;
+                                            let _24: &[u8];
+                                            scope 11 {
+                                                debug byte_vec => _24;
+                                                let _25: algo::U32X4;
+                                                scope 12 {
+                                                    debug val => _25;
+                                                    scope 77 (inlined <U32X4 as AddAssign>::add_assign) {
+                                                        let mut _99: u32;
+                                                        let mut _100: u32;
+                                                        let mut _101: u32;
+                                                        let mut _102: u32;
+                                                    }
+                                                    scope 78 (inlined <U32X4 as AddAssign>::add_assign) {
+                                                        let mut _103: u32;
+                                                        let mut _104: u32;
+                                                        let mut _105: u32;
+                                                        let mut _106: u32;
+                                                    }
+                                                }
+                                            }
+                                            scope 52 (inlined <ChunksExact<'_, u8> as Iterator>::next) {
+                                                let mut _86: usize;
+                                                let mut _87: &mut &[u8];
+                                                let mut _88: &[u8];
+                                                scope 53 (inlined core::slice::<impl [u8]>::split_at_checked) {
+                                                    let mut _89: bool;
+                                                    let mut _90: usize;
+                                                    scope 58 (inlined #[track_caller] core::slice::<impl [u8]>::split_at_unchecked) {
+                                                        let _92: &[u8];
+                                                        let _93: &[u8];
+                                                        let mut _94: *const u8;
+                                                        let mut _95: usize;
+                                                        scope 59 {
+                                                            let _91: *const u8;
+                                                            scope 60 {
+                                                                scope 62 (inlined #[track_caller] std::slice::from_raw_parts::<'_, u8>) {
+                                                                    let _97: *const [u8];
+                                                                    scope 63 (inlined core::ub_checks::check_language_ub) {
+                                                                        scope 64 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                                        }
+                                                                    }
+                                                                    scope 65 (inlined std::mem::size_of::<u8>) {
+                                                                    }
+                                                                    scope 66 (inlined std::mem::align_of::<u8>) {
+                                                                    }
+                                                                    scope 67 (inlined slice_from_raw_parts::<u8>) {
+                                                                        scope 68 (inlined std::ptr::from_raw_parts::<[u8], u8>) {
+                                                                        }
+                                                                    }
+                                                                }
+                                                                scope 69 (inlined #[track_caller] std::ptr::const_ptr::<impl *const u8>::add) {
+                                                                }
+                                                                scope 70 (inlined #[track_caller] std::slice::from_raw_parts::<'_, u8>) {
+                                                                    let _98: *const [u8];
+                                                                    scope 71 (inlined core::ub_checks::check_language_ub) {
+                                                                        scope 72 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                                        }
+                                                                    }
+                                                                    scope 73 (inlined std::mem::size_of::<u8>) {
+                                                                    }
+                                                                    scope 74 (inlined std::mem::align_of::<u8>) {
+                                                                    }
+                                                                    scope 75 (inlined slice_from_raw_parts::<u8>) {
+                                                                        scope 76 (inlined std::ptr::from_raw_parts::<[u8], u8>) {
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            scope 61 (inlined core::slice::<impl [u8]>::as_ptr) {
+                                                                let mut _96: *const [u8];
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                scope 54 (inlined Option::<(&[u8], &[u8])>::and_then::<&[u8], {closure@<ChunksExact<'_, u8> as Iterator>::next::{closure#0}}>) {
+                                                    scope 55 {
+                                                        scope 56 (inlined <ChunksExact<'_, u8> as Iterator>::next::{closure#0}) {
+                                                            scope 57 {
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        scope 51 (inlined <ChunksExact<'_, u8> as IntoIterator>::into_iter) {
+                                        }
+                                    }
+                                    scope 26 (inlined <ChunksExact<'_, u8> as Iterator>::next) {
+                                        let mut _73: usize;
+                                        let mut _74: &mut &[u8];
+                                        let mut _75: &[u8];
+                                        scope 27 (inlined core::slice::<impl [u8]>::split_at_checked) {
+                                            let mut _76: bool;
+                                            let mut _77: usize;
+                                            scope 32 (inlined #[track_caller] core::slice::<impl [u8]>::split_at_unchecked) {
+                                                let _79: &[u8];
+                                                let _80: &[u8];
+                                                let mut _81: *const u8;
+                                                let mut _82: usize;
+                                                scope 33 {
+                                                    let _78: *const u8;
+                                                    scope 34 {
+                                                        scope 36 (inlined #[track_caller] std::slice::from_raw_parts::<'_, u8>) {
+                                                            let _84: *const [u8];
+                                                            scope 37 (inlined core::ub_checks::check_language_ub) {
+                                                                scope 38 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                                }
+                                                            }
+                                                            scope 39 (inlined std::mem::size_of::<u8>) {
+                                                            }
+                                                            scope 40 (inlined std::mem::align_of::<u8>) {
+                                                            }
+                                                            scope 41 (inlined slice_from_raw_parts::<u8>) {
+                                                                scope 42 (inlined std::ptr::from_raw_parts::<[u8], u8>) {
+                                                                }
+                                                            }
+                                                        }
+                                                        scope 43 (inlined #[track_caller] std::ptr::const_ptr::<impl *const u8>::add) {
+                                                        }
+                                                        scope 44 (inlined #[track_caller] std::slice::from_raw_parts::<'_, u8>) {
+                                                            let _85: *const [u8];
+                                                            scope 45 (inlined core::ub_checks::check_language_ub) {
+                                                                scope 46 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                                }
+                                                            }
+                                                            scope 47 (inlined std::mem::size_of::<u8>) {
+                                                            }
+                                                            scope 48 (inlined std::mem::align_of::<u8>) {
+                                                            }
+                                                            scope 49 (inlined slice_from_raw_parts::<u8>) {
+                                                                scope 50 (inlined std::ptr::from_raw_parts::<[u8], u8>) {
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    scope 35 (inlined core::slice::<impl [u8]>::as_ptr) {
+                                                        let mut _83: *const [u8];
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        scope 28 (inlined Option::<(&[u8], &[u8])>::and_then::<&[u8], {closure@<ChunksExact<'_, u8> as Iterator>::next::{closure#0}}>) {
+                                            scope 29 {
+                                                scope 30 (inlined <ChunksExact<'_, u8> as Iterator>::next::{closure#0}) {
+                                                    scope 31 {
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 13 {
+                                    debug iter => _33;
+                                    let _35: &[u8];
+                                    scope 14 {
+                                        debug byte_vec => _35;
+                                        let _36: algo::U32X4;
+                                        scope 15 {
+                                            debug val => _36;
+                                            scope 105 (inlined <U32X4 as AddAssign>::add_assign) {
+                                                let mut _120: u32;
+                                                let mut _121: u32;
+                                                let mut _122: u32;
+                                                let mut _123: u32;
+                                            }
+                                            scope 106 (inlined <U32X4 as AddAssign>::add_assign) {
+                                                let mut _124: u32;
+                                                let mut _125: u32;
+                                                let mut _126: u32;
+                                                let mut _127: u32;
+                                            }
+                                        }
+                                    }
+                                    scope 80 (inlined <ChunksExact<'_, u8> as Iterator>::next) {
+                                        let mut _107: usize;
+                                        let mut _108: &mut &[u8];
+                                        let mut _109: &[u8];
+                                        scope 81 (inlined core::slice::<impl [u8]>::split_at_checked) {
+                                            let mut _110: bool;
+                                            let mut _111: usize;
+                                            scope 86 (inlined #[track_caller] core::slice::<impl [u8]>::split_at_unchecked) {
+                                                let _113: &[u8];
+                                                let _114: &[u8];
+                                                let mut _115: *const u8;
+                                                let mut _116: usize;
+                                                scope 87 {
+                                                    let _112: *const u8;
+                                                    scope 88 {
+                                                        scope 90 (inlined #[track_caller] std::slice::from_raw_parts::<'_, u8>) {
+                                                            let _118: *const [u8];
+                                                            scope 91 (inlined core::ub_checks::check_language_ub) {
+                                                                scope 92 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                                }
+                                                            }
+                                                            scope 93 (inlined std::mem::size_of::<u8>) {
+                                                            }
+                                                            scope 94 (inlined std::mem::align_of::<u8>) {
+                                                            }
+                                                            scope 95 (inlined slice_from_raw_parts::<u8>) {
+                                                                scope 96 (inlined std::ptr::from_raw_parts::<[u8], u8>) {
+                                                                }
+                                                            }
+                                                        }
+                                                        scope 97 (inlined #[track_caller] std::ptr::const_ptr::<impl *const u8>::add) {
+                                                        }
+                                                        scope 98 (inlined #[track_caller] std::slice::from_raw_parts::<'_, u8>) {
+                                                            let _119: *const [u8];
+                                                            scope 99 (inlined core::ub_checks::check_language_ub) {
+                                                                scope 100 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                                }
+                                                            }
+                                                            scope 101 (inlined std::mem::size_of::<u8>) {
+                                                            }
+                                                            scope 102 (inlined std::mem::align_of::<u8>) {
+                                                            }
+                                                            scope 103 (inlined slice_from_raw_parts::<u8>) {
+                                                                scope 104 (inlined std::ptr::from_raw_parts::<[u8], u8>) {
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    scope 89 (inlined core::slice::<impl [u8]>::as_ptr) {
+                                                        let mut _117: *const [u8];
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        scope 82 (inlined Option::<(&[u8], &[u8])>::and_then::<&[u8], {closure@<ChunksExact<'_, u8> as Iterator>::next::{closure#0}}>) {
+                                            scope 83 {
+                                                scope 84 (inlined <ChunksExact<'_, u8> as Iterator>::next::{closure#0}) {
+                                                    scope 85 {
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 16 {
+                                    debug iter => _53;
+                                    let _57: u32;
+                                    scope 17 {
+                                        debug av => _57;
+                                    }
+                                    scope 121 (inlined <std::slice::Iter<'_, u32> as Iterator>::next) {
+                                        let _136: std::ptr::NonNull<u32>;
+                                        let mut _138: bool;
+                                        let _139: std::ptr::NonNull<u32>;
+                                        let mut _140: std::ptr::NonNull<u32>;
+                                        let _141: &u32;
+                                        scope 122 {
+                                            let _137: *const u32;
+                                            scope 123 {
+                                                scope 124 {
+                                                    scope 127 (inlined #[track_caller] core::num::<impl usize>::unchecked_sub) {
+                                                        scope 128 (inlined core::ub_checks::check_language_ub) {
+                                                            scope 129 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                            }
+                                                        }
+                                                    }
+                                                    scope 130 (inlined without_provenance_mut::<u32>) {
+                                                    }
+                                                }
+                                                scope 125 (inlined std::ptr::const_ptr::<impl *const u32>::addr) {
+                                                    scope 126 (inlined std::ptr::const_ptr::<impl *const u32>::cast::<()>) {
+                                                    }
+                                                }
+                                                scope 131 (inlined <NonNull<u32> as PartialEq>::eq) {
+                                                    let mut _142: *mut u32;
+                                                    let mut _143: *mut u32;
+                                                    scope 132 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                    scope 133 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                }
+                                                scope 134 (inlined NonNull::<u32>::add) {
+                                                    let mut _144: *mut u32;
+                                                    scope 135 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                }
+                                                scope 136 (inlined NonNull::<u32>::as_ref::<'_>) {
+                                                    let _145: *const u32;
+                                                    scope 137 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                    scope 138 (inlined std::ptr::mut_ptr::<impl *mut u32>::cast_const) {
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 18 {
+                                    debug iter => _58;
+                                    let _62: u32;
+                                    scope 19 {
+                                        debug bv => _62;
+                                    }
+                                    scope 152 (inlined <std::slice::Iter<'_, u32> as Iterator>::next) {
+                                        let _154: std::ptr::NonNull<u32>;
+                                        let mut _156: bool;
+                                        let _157: std::ptr::NonNull<u32>;
+                                        let mut _158: std::ptr::NonNull<u32>;
+                                        let _159: &u32;
+                                        scope 153 {
+                                            let _155: *const u32;
+                                            scope 154 {
+                                                scope 155 {
+                                                    scope 158 (inlined #[track_caller] core::num::<impl usize>::unchecked_sub) {
+                                                        scope 159 (inlined core::ub_checks::check_language_ub) {
+                                                            scope 160 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                            }
+                                                        }
+                                                    }
+                                                    scope 161 (inlined without_provenance_mut::<u32>) {
+                                                    }
+                                                }
+                                                scope 156 (inlined std::ptr::const_ptr::<impl *const u32>::addr) {
+                                                    scope 157 (inlined std::ptr::const_ptr::<impl *const u32>::cast::<()>) {
+                                                    }
+                                                }
+                                                scope 162 (inlined <NonNull<u32> as PartialEq>::eq) {
+                                                    let mut _160: *mut u32;
+                                                    let mut _161: *mut u32;
+                                                    scope 163 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                    scope 164 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                }
+                                                scope 165 (inlined NonNull::<u32>::add) {
+                                                    let mut _162: *mut u32;
+                                                    scope 166 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                }
+                                                scope 167 (inlined NonNull::<u32>::as_ref::<'_>) {
+                                                    let _163: *const u32;
+                                                    scope 168 (inlined NonNull::<u32>::as_ptr) {
+                                                    }
+                                                    scope 169 (inlined std::ptr::mut_ptr::<impl *mut u32>::cast_const) {
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 20 {
+                                    debug iter => _63;
+                                    let _65: u8;
+                                    scope 21 {
+                                        debug byte => _65;
+                                        scope 201 (inlined convert::num::<impl From<u8> for u32>::from) {
+                                        }
+                                    }
+                                    scope 183 (inlined <std::slice::Iter<'_, u8> as Iterator>::next) {
+                                        let _173: std::ptr::NonNull<u8>;
+                                        let mut _175: bool;
+                                        let _176: std::ptr::NonNull<u8>;
+                                        let mut _177: std::ptr::NonNull<u8>;
+                                        let _178: &u8;
+                                        scope 184 {
+                                            let _174: *const u8;
+                                            scope 185 {
+                                                scope 186 {
+                                                    scope 189 (inlined #[track_caller] core::num::<impl usize>::unchecked_sub) {
+                                                        scope 190 (inlined core::ub_checks::check_language_ub) {
+                                                            scope 191 (inlined core::ub_checks::check_language_ub::runtime) {
+                                                            }
+                                                        }
+                                                    }
+                                                    scope 192 (inlined without_provenance_mut::<u8>) {
+                                                    }
+                                                }
+                                                scope 187 (inlined std::ptr::const_ptr::<impl *const u8>::addr) {
+                                                    scope 188 (inlined std::ptr::const_ptr::<impl *const u8>::cast::<()>) {
+                                                    }
+                                                }
+                                                scope 193 (inlined <NonNull<u8> as PartialEq>::eq) {
+                                                    let mut _179: *mut u8;
+                                                    let mut _180: *mut u8;
+                                                    scope 194 (inlined NonNull::<u8>::as_ptr) {
+                                                    }
+                                                    scope 195 (inlined NonNull::<u8>::as_ptr) {
+                                                    }
+                                                }
+                                                scope 196 (inlined NonNull::<u8>::add) {
+                                                    let mut _181: *mut u8;
+                                                    scope 197 (inlined NonNull::<u8>::as_ptr) {
+                                                    }
+                                                }
+                                                scope 198 (inlined NonNull::<u8>::as_ref::<'_>) {
+                                                    let _182: *const u8;
+                                                    scope 199 (inlined NonNull::<u8>::as_ptr) {
+                                                    }
+                                                    scope 200 (inlined std::ptr::mut_ptr::<impl *mut u8>::cast_const) {
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 25 (inlined <ChunksExact<'_, u8> as IntoIterator>::into_iter) {
+                                }
+                                scope 79 (inlined <ChunksExact<'_, u8> as IntoIterator>::into_iter) {
+                                }
+                                scope 107 (inlined <U32X4 as MulAssign<u32>>::mul_assign) {
+                                }
+                                scope 108 (inlined core::slice::<impl [u32]>::iter) {
+                                    scope 109 (inlined std::slice::Iter::<'_, u32>::new) {
+                                        let mut _129: std::ptr::NonNull<[u32]>;
+                                        let mut _131: *mut u32;
+                                        let mut _132: *mut u32;
+                                        scope 110 {
+                                            let _128: std::ptr::NonNull<u32>;
+                                            scope 111 {
+                                                let _130: *const u32;
+                                                scope 112 {
+                                                }
+                                                scope 116 (inlined std::ptr::without_provenance::<u32>) {
+                                                    scope 117 (inlined without_provenance_mut::<u32>) {
+                                                    }
+                                                }
+                                                scope 118 (inlined NonNull::<u32>::as_ptr) {
+                                                }
+                                                scope 119 (inlined #[track_caller] std::ptr::mut_ptr::<impl *mut u32>::add) {
+                                                }
+                                            }
+                                            scope 113 (inlined NonNull::<[u32]>::from_ref) {
+                                                let mut _133: *const [u32];
+                                            }
+                                            scope 114 (inlined NonNull::<[u32]>::cast::<u32>) {
+                                                let mut _134: *mut u32;
+                                                let mut _135: *mut [u32];
+                                                scope 115 (inlined NonNull::<[u32]>::as_ptr) {
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 120 (inlined <std::slice::Iter<'_, u32> as IntoIterator>::into_iter) {
+                                }
+                                scope 139 (inlined core::slice::<impl [u32]>::iter) {
+                                    scope 140 (inlined std::slice::Iter::<'_, u32>::new) {
+                                        let mut _147: std::ptr::NonNull<[u32]>;
+                                        let mut _149: *mut u32;
+                                        let mut _150: *mut u32;
+                                        scope 141 {
+                                            let _146: std::ptr::NonNull<u32>;
+                                            scope 142 {
+                                                let _148: *const u32;
+                                                scope 143 {
+                                                }
+                                                scope 147 (inlined std::ptr::without_provenance::<u32>) {
+                                                    scope 148 (inlined without_provenance_mut::<u32>) {
+                                                    }
+                                                }
+                                                scope 149 (inlined NonNull::<u32>::as_ptr) {
+                                                }
+                                                scope 150 (inlined #[track_caller] std::ptr::mut_ptr::<impl *mut u32>::add) {
+                                                }
+                                            }
+                                            scope 144 (inlined NonNull::<[u32]>::from_ref) {
+                                                let mut _151: *const [u32];
+                                            }
+                                            scope 145 (inlined NonNull::<[u32]>::cast::<u32>) {
+                                                let mut _152: *mut u32;
+                                                let mut _153: *mut [u32];
+                                                scope 146 (inlined NonNull::<[u32]>::as_ptr) {
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 151 (inlined <std::slice::Iter<'_, u32> as IntoIterator>::into_iter) {
+                                }
+                                scope 170 (inlined core::slice::<impl [u8]>::iter) {
+                                    scope 171 (inlined std::slice::Iter::<'_, u8>::new) {
+                                        let _164: usize;
+                                        let mut _166: std::ptr::NonNull<[u8]>;
+                                        let mut _168: *mut u8;
+                                        let mut _169: *mut u8;
+                                        scope 172 {
+                                            let _165: std::ptr::NonNull<u8>;
+                                            scope 173 {
+                                                let _167: *const u8;
+                                                scope 174 {
+                                                }
+                                                scope 178 (inlined std::ptr::without_provenance::<u8>) {
+                                                    scope 179 (inlined without_provenance_mut::<u8>) {
+                                                    }
+                                                }
+                                                scope 180 (inlined NonNull::<u8>::as_ptr) {
+                                                }
+                                                scope 181 (inlined #[track_caller] std::ptr::mut_ptr::<impl *mut u8>::add) {
+                                                }
+                                            }
+                                            scope 175 (inlined NonNull::<[u8]>::from_ref) {
+                                                let mut _170: *const [u8];
+                                            }
+                                            scope 176 (inlined NonNull::<[u8]>::cast::<u8>) {
+                                                let mut _171: *mut u8;
+                                                let mut _172: *mut [u8];
+                                                scope 177 (inlined NonNull::<[u8]>::as_ptr) {
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                scope 182 (inlined <std::slice::Iter<'_, u8> as IntoIterator>::into_iter) {
+                                }
+                            }
+                            scope 24 (inlined ChunksExact::<'_, u8>::remainder) {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        scope 23 (inlined convert::num::<impl From<u16> for u32>::from) {
+        }
+    }
+    scope 22 (inlined convert::num::<impl From<u16> for u32>::from) {
+    }
+
+    bb0: {
+        StorageLive(_4);
+        _4 = copy ((*_1).0: u16);
+        _3 = copy _4 as u32 (IntToInt);
+        StorageDead(_4);
+        StorageLive(_6);
+        _6 = copy ((*_1).1: u16);
+        _5 = copy _6 as u32 (IntToInt);
+        StorageDead(_6);
+        StorageLive(_7);
+        StorageLive(_8);
+        _8 = [const 0_u32; 4];
+        _7 = U32X4(move _8);
+        StorageDead(_8);
+        StorageLive(_9);
+        _9 = copy _7;
+        StorageLive(_12);
+        StorageLive(_13);
+        StorageLive(_14);
+        _14 = PtrMetadata(copy _2);
+        StorageLive(_15);
+        _15 = Rem(copy _14, const 4_usize);
+        _13 = Sub(copy _14, move _15);
+        StorageDead(_15);
+        StorageDead(_14);
+        _12 = core::slice::<impl [u8]>::split_at(move _2, move _13) -> [return: bb1, unwind continue];
+    }
+
+    bb1: {
+        StorageDead(_13);
+        StorageLive(_10);
+        _10 = copy (_12.0: &[u8]);
+        _11 = copy (_12.1: &[u8]);
+        StorageDead(_12);
+        StorageLive(_16);
+        _16 = core::slice::<impl [u8]>::chunks_exact(move _10, const 22208_usize) -> [return: bb2, unwind continue];
+    }
+
+    bb2: {
+        StorageLive(_17);
+        _17 = copy (_16.1: &[u8]);
+        StorageLive(_18);
+        _18 = copy _16;
+        goto -> bb3;
+    }
+
+    bb3: {
+        StorageLive(_19);
+        StorageLive(_74);
+        StorageLive(_75);
+        _75 = no_retag copy (_18.0: &[u8]);
+        StorageLive(_73);
+        _73 = copy (_18.2: usize);
+        StorageLive(_76);
+        _77 = PtrMetadata(copy _75);
+        _76 = Le(copy _73, copy _77);
+        switchInt(move _76) -> [0: bb18, otherwise: bb17];
+    }
+
+    bb4: {
+        StorageLive(_22);
+        _22 = copy _21;
+        goto -> bb5;
+    }
+
+    bb5: {
+        StorageLive(_23);
+        StorageLive(_87);
+        StorageLive(_88);
+        _88 = no_retag copy (_22.0: &[u8]);
+        StorageLive(_86);
+        _86 = copy (_22.2: usize);
+        StorageLive(_89);
+        _90 = PtrMetadata(copy _88);
+        _89 = Le(copy _86, copy _90);
+        switchInt(move _89) -> [0: bb20, otherwise: bb19];
+    }
+
+    bb6: {
+        StorageLive(_183);
+        _183 = copy (_25.0: [u32; 4]);
+        StorageLive(_99);
+        _99 = copy _183[0 of 1];
+        (_7.0: [u32; 4])[0 of 1] = Add(copy (_7.0: [u32; 4])[0 of 1], move _99);
+        StorageDead(_99);
+        StorageLive(_100);
+        _100 = copy _183[1 of 2];
+        (_7.0: [u32; 4])[1 of 2] = Add(copy (_7.0: [u32; 4])[1 of 2], move _100);
+        StorageDead(_100);
+        StorageLive(_101);
+        _101 = copy _183[2 of 3];
+        (_7.0: [u32; 4])[2 of 3] = Add(copy (_7.0: [u32; 4])[2 of 3], move _101);
+        StorageDead(_101);
+        StorageLive(_102);
+        _102 = copy _183[3 of 4];
+        (_7.0: [u32; 4])[3 of 4] = Add(copy (_7.0: [u32; 4])[3 of 4], move _102);
+        StorageDead(_102);
+        StorageDead(_183);
+        StorageLive(_184);
+        _184 = copy (_7.0: [u32; 4]);
+        StorageLive(_103);
+        _103 = copy _184[0 of 1];
+        (_9.0: [u32; 4])[0 of 1] = Add(copy (_9.0: [u32; 4])[0 of 1], move _103);
+        StorageDead(_103);
+        StorageLive(_104);
+        _104 = copy _184[1 of 2];
+        (_9.0: [u32; 4])[1 of 2] = Add(copy (_9.0: [u32; 4])[1 of 2], move _104);
+        StorageDead(_104);
+        StorageLive(_105);
+        _105 = copy _184[2 of 3];
+        (_9.0: [u32; 4])[2 of 3] = Add(copy (_9.0: [u32; 4])[2 of 3], move _105);
+        StorageDead(_105);
+        StorageLive(_106);
+        _106 = copy _184[3 of 4];
+        (_9.0: [u32; 4])[3 of 4] = Add(copy (_9.0: [u32; 4])[3 of 4], move _106);
+        StorageDead(_106);
+        StorageDead(_184);
+        StorageDead(_25);
+        StorageDead(_24);
+        StorageDead(_23);
+        goto -> bb5;
+    }
+
+    bb7: {
+        StorageDead(_29);
+        StorageLive(_31);
+        _31 = &mut _9;
+        _30 = <U32X4 as RemAssign<u32>>::rem_assign(move _31, const 65521_u32) -> [return: bb8, unwind continue];
+    }
+
+    bb8: {
+        StorageDead(_31);
+        _5 = Rem(copy _5, const 65521_u32);
+        StorageDead(_20);
+        StorageDead(_19);
+        goto -> bb3;
+    }
+
+    bb9: {
+        StorageLive(_33);
+        _33 = copy _32;
+        goto -> bb10;
+    }
+
+    bb10: {
+        StorageLive(_34);
+        StorageLive(_108);
+        StorageLive(_109);
+        _109 = no_retag copy (_33.0: &[u8]);
+        StorageLive(_107);
+        _107 = copy (_33.2: usize);
+        StorageLive(_110);
+        _111 = PtrMetadata(copy _109);
+        _110 = Le(copy _107, copy _111);
+        switchInt(move _110) -> [0: bb22, otherwise: bb21];
+    }
+
+    bb11: {
+        StorageLive(_185);
+        _185 = copy (_36.0: [u32; 4]);
+        StorageLive(_120);
+        _120 = copy _185[0 of 1];
+        (_7.0: [u32; 4])[0 of 1] = Add(copy (_7.0: [u32; 4])[0 of 1], move _120);
+        StorageDead(_120);
+        StorageLive(_121);
+        _121 = copy _185[1 of 2];
+        (_7.0: [u32; 4])[1 of 2] = Add(copy (_7.0: [u32; 4])[1 of 2], move _121);
+        StorageDead(_121);
+        StorageLive(_122);
+        _122 = copy _185[2 of 3];
+        (_7.0: [u32; 4])[2 of 3] = Add(copy (_7.0: [u32; 4])[2 of 3], move _122);
+        StorageDead(_122);
+        StorageLive(_123);
+        _123 = copy _185[3 of 4];
+        (_7.0: [u32; 4])[3 of 4] = Add(copy (_7.0: [u32; 4])[3 of 4], move _123);
+        StorageDead(_123);
+        StorageDead(_185);
+        StorageLive(_186);
+        _186 = copy (_7.0: [u32; 4]);
+        StorageLive(_124);
+        _124 = copy _186[0 of 1];
+        (_9.0: [u32; 4])[0 of 1] = Add(copy (_9.0: [u32; 4])[0 of 1], move _124);
+        StorageDead(_124);
+        StorageLive(_125);
+        _125 = copy _186[1 of 2];
+        (_9.0: [u32; 4])[1 of 2] = Add(copy (_9.0: [u32; 4])[1 of 2], move _125);
+        StorageDead(_125);
+        StorageLive(_126);
+        _126 = copy _186[2 of 3];
+        (_9.0: [u32; 4])[2 of 3] = Add(copy (_9.0: [u32; 4])[2 of 3], move _126);
+        StorageDead(_126);
+        StorageLive(_127);
+        _127 = copy _186[3 of 4];
+        (_9.0: [u32; 4])[3 of 4] = Add(copy (_9.0: [u32; 4])[3 of 4], move _127);
+        StorageDead(_127);
+        StorageDead(_186);
+        StorageDead(_36);
+        StorageDead(_35);
+        StorageDead(_34);
+        goto -> bb10;
+    }
+
+    bb12: {
+        StorageDead(_42);
+        StorageLive(_44);
+        _44 = &mut _9;
+        _43 = <U32X4 as RemAssign<u32>>::rem_assign(move _44, const 65521_u32) -> [return: bb13, unwind continue];
+    }
+
+    bb13: {
+        StorageDead(_44);
+        _5 = Rem(copy _5, const 65521_u32);
+        (_9.0: [u32; 4])[0 of 1] = Mul(copy (_9.0: [u32; 4])[0 of 1], const 4_u32);
+        (_9.0: [u32; 4])[1 of 2] = Mul(copy (_9.0: [u32; 4])[1 of 2], const 4_u32);
+        (_9.0: [u32; 4])[2 of 3] = Mul(copy (_9.0: [u32; 4])[2 of 3], const 4_u32);
+        (_9.0: [u32; 4])[3 of 4] = Mul(copy (_9.0: [u32; 4])[3 of 4], const 4_u32);
+        StorageLive(_45);
+        StorageLive(_46);
+        _46 = copy (_7.0: [u32; 4])[1 of 2];
+        _45 = Sub(const 65521_u32, move _46);
+        StorageDead(_46);
+        (_9.0: [u32; 4])[1 of 2] = Add(copy (_9.0: [u32; 4])[1 of 2], move _45);
+        StorageDead(_45);
+        StorageLive(_47);
+        StorageLive(_48);
+        StorageLive(_49);
+        _49 = copy (_7.0: [u32; 4])[2 of 3];
+        _48 = Sub(const 65521_u32, move _49);
+        StorageDead(_49);
+        _47 = Mul(move _48, const 2_u32);
+        StorageDead(_48);
+        (_9.0: [u32; 4])[2 of 3] = Add(copy (_9.0: [u32; 4])[2 of 3], move _47);
+        StorageDead(_47);
+        StorageLive(_50);
+        StorageLive(_51);
+        StorageLive(_52);
+        _52 = copy (_7.0: [u32; 4])[3 of 4];
+        _51 = Sub(const 65521_u32, move _52);
+        StorageDead(_52);
+        _50 = Mul(move _51, const 3_u32);
+        StorageDead(_51);
+        (_9.0: [u32; 4])[3 of 4] = Add(copy (_9.0: [u32; 4])[3 of 4], move _50);
+        StorageDead(_50);
+        StorageLive(_54);
+        StorageLive(_55);
+        _55 = &(_7.0: [u32; 4]);
+        _54 = copy _55 as &[u32] (PointerCoercion(Unsize, Implicit));
+        StorageDead(_55);
+        StorageLive(_130);
+        StorageLive(_128);
+        StorageLive(_129);
+        StorageLive(_133);
+        _133 = &raw const (*_54);
+        _129 = copy _133 as std::ptr::NonNull<[u32]> (Transmute);
+        StorageDead(_133);
+        StorageLive(_134);
+        StorageLive(_135);
+        _135 = copy _129 as *mut [u32] (Transmute);
+        _134 = copy _135 as *mut u32 (PtrToPtr);
+        StorageDead(_135);
+        _128 = copy _134 as std::ptr::NonNull<u32> (Transmute);
+        StorageDead(_134);
+        StorageDead(_129);
+        StorageLive(_131);
+        StorageLive(_132);
+        _132 = copy _128 as *mut u32 (Transmute);
+        _131 = Offset(copy _132, const 4_usize);
+        StorageDead(_132);
+        _130 = copy _131 as *const u32 (PtrToPtr);
+        StorageDead(_131);
+        _53 = std::slice::Iter::<'_, u32> { ptr: copy _128, end_or_len: copy _130, _marker: const PhantomData::<&u32> };
+        StorageDead(_128);
+        StorageDead(_130);
+        StorageDead(_54);
+        goto -> bb14;
+    }
+
+    bb14: {
+        StorageLive(_56);
+        StorageLive(_142);
+        StorageLive(_136);
+        _136 = copy (_53.0: std::ptr::NonNull<u32>);
+        StorageLive(_137);
+        _137 = copy (_53.1: *const u32);
+        StorageLive(_138);
+        StorageLive(_139);
+        _139 = copy _137 as std::ptr::NonNull<u32> (Transmute);
+        _142 = copy _136 as *mut u32 (Transmute);
+        StorageLive(_143);
+        _143 = copy _139 as *mut u32 (Transmute);
+        _138 = Eq(copy _142, copy _143);
+        StorageDead(_143);
+        switchInt(move _138) -> [0: bb24, otherwise: bb23];
+    }
+
+    bb15: {
+        StorageLive(_61);
+        StorageLive(_160);
+        StorageLive(_154);
+        _154 = copy (_58.0: std::ptr::NonNull<u32>);
+        StorageLive(_155);
+        _155 = copy (_58.1: *const u32);
+        StorageLive(_156);
+        StorageLive(_157);
+        _157 = copy _155 as std::ptr::NonNull<u32> (Transmute);
+        _160 = copy _154 as *mut u32 (Transmute);
+        StorageLive(_161);
+        _161 = copy _157 as *mut u32 (Transmute);
+        _156 = Eq(copy _160, copy _161);
+        StorageDead(_161);
+        switchInt(move _156) -> [0: bb26, otherwise: bb25];
+    }
+
+    bb16: {
+        StorageLive(_64);
+        StorageLive(_179);
+        StorageLive(_173);
+        _173 = copy (_63.0: std::ptr::NonNull<u8>);
+        StorageLive(_174);
+        _174 = copy (_63.1: *const u8);
+        StorageLive(_175);
+        StorageLive(_176);
+        _176 = copy _174 as std::ptr::NonNull<u8> (Transmute);
+        _179 = copy _173 as *mut u8 (Transmute);
+        StorageLive(_180);
+        _180 = copy _176 as *mut u8 (Transmute);
+        _175 = Eq(copy _179, copy _180);
+        StorageDead(_180);
+        switchInt(move _175) -> [0: bb28, otherwise: bb27];
+    }
+
+    bb17: {
+        StorageLive(_83);
+        StorageLive(_78);
+        _83 = &raw const (*_75);
+        _78 = copy _83 as *const u8 (PtrToPtr);
+        StorageLive(_84);
+        _84 = *const [u8] from (copy _78, copy _73);
+        _79 = &(*_84);
+        StorageDead(_84);
+        StorageLive(_81);
+        _81 = Offset(copy _78, copy _73);
+        StorageLive(_82);
+        _82 = SubUnchecked(copy _77, copy _73);
+        StorageLive(_85);
+        _85 = *const [u8] from (copy _81, copy _82);
+        _80 = &(*_85);
+        StorageDead(_85);
+        StorageDead(_82);
+        StorageDead(_81);
+        StorageDead(_78);
+        StorageDead(_83);
+        StorageDead(_76);
+        StorageDead(_73);
+        _74 = &mut (_18.0: &[u8]);
+        (*_74) = copy _80;
+        _19 = Option::<&[u8]>::Some(copy _79);
+        StorageDead(_75);
+        StorageDead(_74);
+        StorageLive(_20);
+        _20 = copy ((_19 as Some).0: &[u8]);
+        _21 = core::slice::<impl [u8]>::chunks_exact(move _20, const 4_usize) -> [return: bb4, unwind continue];
+    }
+
+    bb18: {
+        StorageDead(_76);
+        StorageDead(_73);
+        StorageDead(_75);
+        StorageDead(_74);
+        StorageDead(_19);
+        StorageDead(_18);
+        _32 = core::slice::<impl [u8]>::chunks_exact(copy _17, const 4_usize) -> [return: bb9, unwind continue];
+    }
+
+    bb19: {
+        StorageLive(_96);
+        StorageLive(_91);
+        _96 = &raw const (*_88);
+        _91 = copy _96 as *const u8 (PtrToPtr);
+        StorageLive(_97);
+        _97 = *const [u8] from (copy _91, copy _86);
+        _92 = &(*_97);
+        StorageDead(_97);
+        StorageLive(_94);
+        _94 = Offset(copy _91, copy _86);
+        StorageLive(_95);
+        _95 = SubUnchecked(copy _90, copy _86);
+        StorageLive(_98);
+        _98 = *const [u8] from (copy _94, copy _95);
+        _93 = &(*_98);
+        StorageDead(_98);
+        StorageDead(_95);
+        StorageDead(_94);
+        StorageDead(_91);
+        StorageDead(_96);
+        StorageDead(_89);
+        StorageDead(_86);
+        _87 = &mut (_22.0: &[u8]);
+        (*_87) = copy _93;
+        _23 = Option::<&[u8]>::Some(copy _92);
+        StorageDead(_88);
+        StorageDead(_87);
+        StorageLive(_24);
+        _24 = copy ((_23 as Some).0: &[u8]);
+        StorageLive(_25);
+        _25 = U32X4::from(move _24) -> [return: bb6, unwind continue];
+    }
+
+    bb20: {
+        StorageDead(_89);
+        StorageDead(_86);
+        StorageDead(_88);
+        StorageDead(_87);
+        StorageDead(_23);
+        StorageDead(_22);
+        StorageLive(_26);
+        StorageLive(_27);
+        _27 = copy _3;
+        _26 = Mul(const 22208_u32, move _27);
+        StorageDead(_27);
+        _5 = Add(copy _5, move _26);
+        StorageDead(_26);
+        StorageLive(_29);
+        _29 = &mut _7;
+        _28 = <U32X4 as RemAssign<u32>>::rem_assign(move _29, const 65521_u32) -> [return: bb7, unwind continue];
+    }
+
+    bb21: {
+        StorageLive(_117);
+        StorageLive(_112);
+        _117 = &raw const (*_109);
+        _112 = copy _117 as *const u8 (PtrToPtr);
+        StorageLive(_118);
+        _118 = *const [u8] from (copy _112, copy _107);
+        _113 = &(*_118);
+        StorageDead(_118);
+        StorageLive(_115);
+        _115 = Offset(copy _112, copy _107);
+        StorageLive(_116);
+        _116 = SubUnchecked(copy _111, copy _107);
+        StorageLive(_119);
+        _119 = *const [u8] from (copy _115, copy _116);
+        _114 = &(*_119);
+        StorageDead(_119);
+        StorageDead(_116);
+        StorageDead(_115);
+        StorageDead(_112);
+        StorageDead(_117);
+        StorageDead(_110);
+        StorageDead(_107);
+        _108 = &mut (_33.0: &[u8]);
+        (*_108) = copy _114;
+        _34 = Option::<&[u8]>::Some(copy _113);
+        StorageDead(_109);
+        StorageDead(_108);
+        StorageLive(_35);
+        _35 = copy ((_34 as Some).0: &[u8]);
+        StorageLive(_36);
+        _36 = U32X4::from(move _35) -> [return: bb11, unwind continue];
+    }
+
+    bb22: {
+        StorageDead(_110);
+        StorageDead(_107);
+        StorageDead(_109);
+        StorageDead(_108);
+        StorageDead(_34);
+        StorageDead(_33);
+        StorageLive(_37);
+        StorageLive(_38);
+        StorageLive(_39);
+        _39 = PtrMetadata(copy _17);
+        _38 = move _39 as u32 (IntToInt);
+        StorageDead(_39);
+        StorageLive(_40);
+        _40 = copy _3;
+        _37 = Mul(move _38, move _40);
+        StorageDead(_40);
+        StorageDead(_38);
+        _5 = Add(copy _5, move _37);
+        StorageDead(_37);
+        StorageLive(_42);
+        _42 = &mut _7;
+        _41 = <U32X4 as RemAssign<u32>>::rem_assign(move _42, const 65521_u32) -> [return: bb12, unwind continue];
+    }
+
+    bb23: {
+        StorageDead(_139);
+        StorageDead(_138);
+        StorageDead(_137);
+        StorageDead(_136);
+        StorageDead(_142);
+        StorageDead(_56);
+        StorageLive(_59);
+        StorageLive(_60);
+        _60 = &(_9.0: [u32; 4]);
+        _59 = copy _60 as &[u32] (PointerCoercion(Unsize, Implicit));
+        StorageDead(_60);
+        StorageLive(_148);
+        StorageLive(_146);
+        StorageLive(_147);
+        StorageLive(_151);
+        _151 = &raw const (*_59);
+        _147 = copy _151 as std::ptr::NonNull<[u32]> (Transmute);
+        StorageDead(_151);
+        StorageLive(_152);
+        StorageLive(_153);
+        _153 = copy _147 as *mut [u32] (Transmute);
+        _152 = copy _153 as *mut u32 (PtrToPtr);
+        StorageDead(_153);
+        _146 = copy _152 as std::ptr::NonNull<u32> (Transmute);
+        StorageDead(_152);
+        StorageDead(_147);
+        StorageLive(_149);
+        StorageLive(_150);
+        _150 = copy _146 as *mut u32 (Transmute);
+        _149 = Offset(copy _150, const 4_usize);
+        StorageDead(_150);
+        _148 = copy _149 as *const u32 (PtrToPtr);
+        StorageDead(_149);
+        _58 = std::slice::Iter::<'_, u32> { ptr: copy _146, end_or_len: copy _148, _marker: const PhantomData::<&u32> };
+        StorageDead(_146);
+        StorageDead(_148);
+        StorageDead(_59);
+        goto -> bb15;
+    }
+
+    bb24: {
+        StorageDead(_139);
+        StorageDead(_138);
+        StorageLive(_140);
+        StorageLive(_144);
+        _144 = Offset(copy _142, const 1_usize);
+        _140 = copy _144 as std::ptr::NonNull<u32> (Transmute);
+        StorageDead(_144);
+        (_53.0: std::ptr::NonNull<u32>) = move _140;
+        StorageDead(_140);
+        StorageLive(_141);
+        StorageLive(_145);
+        _145 = copy _136 as *const u32 (Transmute);
+        _141 = &(*_145);
+        StorageDead(_145);
+        _56 = Option::<&u32>::Some(copy _141);
+        StorageDead(_141);
+        StorageDead(_137);
+        StorageDead(_136);
+        StorageDead(_142);
+        StorageLive(_57);
+        _70 = no_retag copy ((_56 as Some).0: &u32);
+        _57 = copy (*_70);
+        _3 = Add(copy _3, copy _57);
+        StorageDead(_57);
+        StorageDead(_56);
+        goto -> bb14;
+    }
+
+    bb25: {
+        StorageDead(_157);
+        StorageDead(_156);
+        StorageDead(_155);
+        StorageDead(_154);
+        StorageDead(_160);
+        StorageDead(_61);
+        StorageLive(_167);
+        StorageLive(_164);
+        _164 = PtrMetadata(copy _11);
+        StorageLive(_165);
+        StorageLive(_166);
+        StorageLive(_170);
+        _170 = &raw const (*_11);
+        _166 = copy _170 as std::ptr::NonNull<[u8]> (Transmute);
+        StorageDead(_170);
+        StorageLive(_171);
+        StorageLive(_172);
+        _172 = copy _166 as *mut [u8] (Transmute);
+        _171 = copy _172 as *mut u8 (PtrToPtr);
+        StorageDead(_172);
+        _165 = copy _171 as std::ptr::NonNull<u8> (Transmute);
+        StorageDead(_171);
+        StorageDead(_166);
+        StorageLive(_168);
+        StorageLive(_169);
+        _169 = copy _165 as *mut u8 (Transmute);
+        _168 = Offset(copy _169, copy _164);
+        StorageDead(_169);
+        _167 = copy _168 as *const u8 (PtrToPtr);
+        StorageDead(_168);
+        _63 = std::slice::Iter::<'_, u8> { ptr: copy _165, end_or_len: copy _167, _marker: const PhantomData::<&u8> };
+        StorageDead(_165);
+        StorageDead(_164);
+        StorageDead(_167);
+        goto -> bb16;
+    }
+
+    bb26: {
+        StorageDead(_157);
+        StorageDead(_156);
+        StorageLive(_158);
+        StorageLive(_162);
+        _162 = Offset(copy _160, const 1_usize);
+        _158 = copy _162 as std::ptr::NonNull<u32> (Transmute);
+        StorageDead(_162);
+        (_58.0: std::ptr::NonNull<u32>) = move _158;
+        StorageDead(_158);
+        StorageLive(_159);
+        StorageLive(_163);
+        _163 = copy _154 as *const u32 (Transmute);
+        _159 = &(*_163);
+        StorageDead(_163);
+        _61 = Option::<&u32>::Some(copy _159);
+        StorageDead(_159);
+        StorageDead(_155);
+        StorageDead(_154);
+        StorageDead(_160);
+        StorageLive(_62);
+        _71 = no_retag copy ((_61 as Some).0: &u32);
+        _62 = copy (*_71);
+        _5 = Add(copy _5, copy _62);
+        StorageDead(_62);
+        StorageDead(_61);
+        goto -> bb15;
+    }
+
+    bb27: {
+        StorageDead(_176);
+        StorageDead(_175);
+        StorageDead(_174);
+        StorageDead(_173);
+        StorageDead(_179);
+        StorageDead(_64);
+        StorageLive(_68);
+        _68 = Rem(move _3, const 65521_u32);
+        ((*_1).0: u16) = move _68 as u16 (IntToInt);
+        StorageDead(_68);
+        StorageLive(_69);
+        _69 = Rem(move _5, const 65521_u32);
+        ((*_1).1: u16) = move _69 as u16 (IntToInt);
+        StorageDead(_69);
+        StorageDead(_17);
+        StorageDead(_16);
+        StorageDead(_10);
+        StorageDead(_9);
+        StorageDead(_7);
+        return;
+    }
+
+    bb28: {
+        StorageDead(_176);
+        StorageDead(_175);
+        StorageLive(_177);
+        StorageLive(_181);
+        _181 = Offset(copy _179, const 1_usize);
+        _177 = copy _181 as std::ptr::NonNull<u8> (Transmute);
+        StorageDead(_181);
+        (_63.0: std::ptr::NonNull<u8>) = move _177;
+        StorageDead(_177);
+        StorageLive(_178);
+        StorageLive(_182);
+        _182 = copy _173 as *const u8 (Transmute);
+        _178 = &(*_182);
+        StorageDead(_182);
+        _64 = Option::<&u8>::Some(copy _178);
+        StorageDead(_178);
+        StorageDead(_174);
+        StorageDead(_173);
+        StorageDead(_179);
+        StorageLive(_65);
+        _72 = no_retag copy ((_64 as Some).0: &u8);
+        _65 = copy (*_72);
+        StorageLive(_66);
+        _66 = copy _65 as u32 (IntToInt);
+        _3 = Add(copy _3, move _66);
+        StorageDead(_66);
+        StorageLive(_67);
+        _67 = copy _3;
+        _5 = Add(copy _5, move _67);
+        StorageDead(_67);
+        StorageDead(_65);
+        StorageDead(_64);
+        goto -> bb16;
+    }
+}
+
+const MOD: u32 = const 65521_u32;
+
+const CHUNK_SIZE: usize = {
+    let mut _0: usize;
+    let mut _1: (usize, bool);
+
+    bb0: {
+        _1 = MulWithOverflow(const 5552_usize, const 4_usize);
+        assert(!move (_1.1: bool), "attempt to compute `{} * {}`, which would overflow", const 5552_usize, const 4_usize) -> [success: bb1, unwind continue];
+    }
+
+    bb1: {
+        _0 = move (_1.0: usize);
+        return;
+    }
+}
+
+const algo::<impl at src/algo.rs:4:1: 4:13>::compute::{constant#0}: usize = const 4_usize;
+
+const U32X4::0::{constant#0}: usize = const 4_usize;
+
+fn algo::<impl at src/algo.rs:111:16: 111:21>::clone(_1: &U32X4) -> U32X4 {
+    debug self => _1;
+    let mut _0: algo::U32X4;
+    scope 1 {
+    }
+
+    bb0: {
+        _0 = copy (*_1);
+        return;
+    }
+}
+
+const algo::<impl at src/algo.rs:111:16: 111:21>::clone::{constant#0}: usize = const 4_usize;
+
+fn algo::<impl at src/algo.rs:114:1: 114:11>::from(_1: &[u8]) -> U32X4 {
+    debug bytes => _1;
+    let mut _0: algo::U32X4;
+    let mut _2: [u32; 4];
+    let mut _3: u32;
+    let mut _4: u8;
+    let mut _5: usize;
+    let mut _6: bool;
+    let mut _7: u32;
+    let mut _8: u8;
+    let mut _9: bool;
+    let mut _10: u32;
+    let mut _11: u8;
+    let mut _12: bool;
+    let mut _13: u32;
+    let mut _14: u8;
+    let mut _15: bool;
+    scope 1 (inlined convert::num::<impl From<u8> for u32>::from) {
+    }
+    scope 2 (inlined convert::num::<impl From<u8> for u32>::from) {
+    }
+    scope 3 (inlined convert::num::<impl From<u8> for u32>::from) {
+    }
+    scope 4 (inlined convert::num::<impl From<u8> for u32>::from) {
+    }
+
+    bb0: {
+        StorageLive(_2);
+        StorageLive(_3);
+        StorageLive(_4);
+        _5 = PtrMetadata(copy _1);
+        _6 = Lt(const 0_usize, copy _5);
+        assert(move _6, "index out of bounds: the length is {} but the index is {}", copy _5, const 0_usize) -> [success: bb1, unwind continue];
+    }
+
+    bb1: {
+        _4 = copy (*_1)[0 of 1];
+        _3 = copy _4 as u32 (IntToInt);
+        StorageDead(_4);
+        StorageLive(_7);
+        StorageLive(_8);
+        _9 = Lt(const 1_usize, copy _5);
+        assert(move _9, "index out of bounds: the length is {} but the index is {}", copy _5, const 1_usize) -> [success: bb2, unwind continue];
+    }
+
+    bb2: {
+        _8 = copy (*_1)[1 of 2];
+        _7 = copy _8 as u32 (IntToInt);
+        StorageDead(_8);
+        StorageLive(_10);
+        StorageLive(_11);
+        _12 = Lt(const 2_usize, copy _5);
+        assert(move _12, "index out of bounds: the length is {} but the index is {}", copy _5, const 2_usize) -> [success: bb3, unwind continue];
+    }
+
+    bb3: {
+        _11 = copy (*_1)[2 of 3];
+        _10 = copy _11 as u32 (IntToInt);
+        StorageDead(_11);
+        StorageLive(_13);
+        StorageLive(_14);
+        _15 = Lt(const 3_usize, copy _5);
+        assert(move _15, "index out of bounds: the length is {} but the index is {}", copy _5, const 3_usize) -> [success: bb4, unwind continue];
+    }
+
+    bb4: {
+        _14 = copy (*_1)[3 of 4];
+        _13 = copy _14 as u32 (IntToInt);
+        StorageDead(_14);
+        _2 = [move _3, move _7, move _10, move _13];
+        StorageDead(_13);
+        StorageDead(_10);
+        StorageDead(_7);
+        StorageDead(_3);
+        _0 = U32X4(move _2);
+        StorageDead(_2);
+        return;
+    }
+}
+
+fn algo::<impl at src/algo.rs:126:1: 126:31>::add_assign(_1: &mut U32X4, _2: U32X4) -> () {
+    debug self => _1;
+    debug other => _2;
+    let mut _0: ();
+    let mut _3: u32;
+    let mut _4: u32;
+    let mut _5: u32;
+    let mut _6: u32;
+
+    bb0: {
+        StorageLive(_3);
+        _3 = copy (_2.0: [u32; 4])[0 of 1];
+        ((*_1).0: [u32; 4])[0 of 1] = Add(copy ((*_1).0: [u32; 4])[0 of 1], move _3);
+        StorageDead(_3);
+        StorageLive(_4);
+        _4 = copy (_2.0: [u32; 4])[1 of 2];
+        ((*_1).0: [u32; 4])[1 of 2] = Add(copy ((*_1).0: [u32; 4])[1 of 2], move _4);
+        StorageDead(_4);
+        StorageLive(_5);
+        _5 = copy (_2.0: [u32; 4])[2 of 3];
+        ((*_1).0: [u32; 4])[2 of 3] = Add(copy ((*_1).0: [u32; 4])[2 of 3], move _5);
+        StorageDead(_5);
+        StorageLive(_6);
+        _6 = copy (_2.0: [u32; 4])[3 of 4];
+        ((*_1).0: [u32; 4])[3 of 4] = Add(copy ((*_1).0: [u32; 4])[3 of 4], move _6);
+        StorageDead(_6);
+        return;
+    }
+}
+
+fn algo::<impl at src/algo.rs:137:1: 137:30>::rem_assign(_1: &mut U32X4, _2: u32) -> () {
+    debug self => _1;
+    debug quotient => _2;
+    let mut _0: ();
+    let mut _3: bool;
+
+    bb0: {
+        _3 = Eq(copy _2, const 0_u32);
+        assert(!copy _3, "attempt to calculate the remainder of `{}` with a divisor of zero", copy ((*_1).0: [u32; 4])[0 of 1]) -> [success: bb1, unwind continue];
+    }
+
+    bb1: {
+        ((*_1).0: [u32; 4])[0 of 1] = Rem(copy ((*_1).0: [u32; 4])[0 of 1], copy _2);
+        assert(!copy _3, "attempt to calculate the remainder of `{}` with a divisor of zero", copy ((*_1).0: [u32; 4])[1 of 2]) -> [success: bb2, unwind continue];
+    }
+
+    bb2: {
+        ((*_1).0: [u32; 4])[1 of 2] = Rem(copy ((*_1).0: [u32; 4])[1 of 2], copy _2);
+        assert(!copy _3, "attempt to calculate the remainder of `{}` with a divisor of zero", copy ((*_1).0: [u32; 4])[2 of 3]) -> [success: bb3, unwind continue];
+    }
+
+    bb3: {
+        ((*_1).0: [u32; 4])[2 of 3] = Rem(copy ((*_1).0: [u32; 4])[2 of 3], copy _2);
+        assert(!copy _3, "attempt to calculate the remainder of `{}` with a divisor of zero", copy ((*_1).0: [u32; 4])[3 of 4]) -> [success: bb4, unwind continue];
+    }
+
+    bb4: {
+        ((*_1).0: [u32; 4])[3 of 4] = Rem(copy ((*_1).0: [u32; 4])[3 of 4], copy _2);
+        return;
+    }
+}
+
+fn algo::<impl at src/algo.rs:147:1: 147:30>::mul_assign(_1: &mut U32X4, _2: u32) -> () {
+    debug self => _1;
+    debug rhs => _2;
+    let mut _0: ();
+
+    bb0: {
+        ((*_1).0: [u32; 4])[0 of 1] = Mul(copy ((*_1).0: [u32; 4])[0 of 1], copy _2);
+        ((*_1).0: [u32; 4])[1 of 2] = Mul(copy ((*_1).0: [u32; 4])[1 of 2], copy _2);
+        ((*_1).0: [u32; 4])[2 of 3] = Mul(copy ((*_1).0: [u32; 4])[2 of 3], copy _2);
+        ((*_1).0: [u32; 4])[3 of 4] = Mul(copy ((*_1).0: [u32; 4])[3 of 4], copy _2);
+        return;
+    }
+}
+
+fn <impl at src/lib.rs:86:10: 86:15>::fmt(_1: &Adler32, _2: &mut Formatter<'_>) -> Result<(), std::fmt::Error> {
+    debug self => _1;
+    debug f => _2;
+    let mut _0: std::result::Result<(), std::fmt::Error>;
+    let mut _3: &dyn std::fmt::Debug;
+    let _4: &u16;
+    let mut _5: &dyn std::fmt::Debug;
+    let _6: &&u16;
+    let _7: &u16;
+
+    bb0: {
+        StorageLive(_3);
+        StorageLive(_4);
+        _4 = &((*_1).0: u16);
+        _3 = copy _4 as &dyn std::fmt::Debug (PointerCoercion(Unsize, Implicit));
+        StorageLive(_5);
+        StorageLive(_6);
+        StorageLive(_7);
+        _7 = &((*_1).1: u16);
+        _6 = &_7;
+        _5 = copy _6 as &dyn std::fmt::Debug (PointerCoercion(Unsize, Implicit));
+        _0 = Formatter::<'_>::debug_struct_field2_finish(move _2, const "Adler32", const "a", move _3, const "b", move _5) -> [return: bb1, unwind continue];
+    }
+
+    bb1: {
+        StorageDead(_7);
+        StorageDead(_6);
+        StorageDead(_5);
+        StorageDead(_4);
+        StorageDead(_3);
+        return;
+    }
+}
+
+alloc4 (size: 1, align: 1) {
+    62                                              │ b
+}
+
+alloc3 (size: 1, align: 1) {
+    61                                              │ a
+}
+
+alloc2 (size: 7, align: 1) {
+    41 64 6c 65 72 33 32                            │ Adler32
+}
+
+fn <impl at src/lib.rs:86:23: 86:28>::clone(_1: &Adler32) -> Adler32 {
+    debug self => _1;
+    let mut _0: Adler32;
+    scope 1 {
+    }
+
+    bb0: {
+        _0 = copy (*_1);
+        return;
+    }
+}
+
+fn <impl at src/lib.rs:92:1: 92:13>::new() -> Adler32 {
+    let mut _0: Adler32;
+    scope 1 (inlined <Adler32 as Default>::default) {
+    }
+
+    bb0: {
+        _0 = const Adler32 {{ a: 1_u16, b: 0_u16 }};
+        return;
+    }
+}
+
+alloc16 (size: 4, align: 2) {
+    01 00 00 00                                     │ ....
+}
+
+fn <impl at src/lib.rs:92:1: 92:13>::from_checksum(_1: u32) -> Adler32 {
+    debug sum => _1;
+    let mut _0: Adler32;
+    let mut _2: u16;
+    let mut _3: u16;
+    let mut _4: u32;
+
+    bb0: {
+        StorageLive(_2);
+        _2 = copy _1 as u16 (IntToInt);
+        StorageLive(_3);
+        StorageLive(_4);
+        _4 = Shr(copy _1, const 16_i32);
+        _3 = move _4 as u16 (IntToInt);
+        StorageDead(_4);
+        _0 = Adler32 { a: move _2, b: move _3 };
+        StorageDead(_3);
+        StorageDead(_2);
+        return;
+    }
+}
+
+// MIR FOR CTFE
+fn <impl at src/lib.rs:92:1: 92:13>::from_checksum(_1: u32) -> Adler32 {
+    debug sum => _1;
+    let mut _0: Adler32;
+    let mut _2: u16;
+    let mut _3: u32;
+    let mut _4: u16;
+    let mut _5: u32;
+    let mut _6: u32;
+
+    bb0: {
+        StorageLive(_2);
+        StorageLive(_3);
+        _3 = copy _1;
+        _2 = move _3 as u16 (IntToInt);
+        StorageDead(_3);
+        StorageLive(_4);
+        StorageLive(_5);
+        StorageLive(_6);
+        _6 = copy _1;
+        _5 = Shr(move _6, const 16_i32);
+        StorageDead(_6);
+        _4 = move _5 as u16 (IntToInt);
+        StorageDead(_5);
+        _0 = Adler32 { a: move _2, b: move _4 };
+        StorageDead(_4);
+        StorageDead(_2);
+        return;
+    }
+}
+
+fn <impl at src/lib.rs:92:1: 92:13>::checksum(_1: &Adler32) -> u32 {
+    debug self => _1;
+    let mut _0: u32;
+    let mut _2: u32;
+    let mut _3: u32;
+    let mut _4: u16;
+    let mut _5: u32;
+    let mut _6: u16;
+    scope 1 (inlined convert::num::<impl From<u16> for u32>::from) {
+    }
+    scope 2 (inlined convert::num::<impl From<u16> for u32>::from) {
+    }
+
+    bb0: {
+        StorageLive(_2);
+        StorageLive(_3);
+        StorageLive(_4);
+        _4 = copy ((*_1).1: u16);
+        _3 = copy _4 as u32 (IntToInt);
+        StorageDead(_4);
+        _2 = Shl(move _3, const 16_i32);
+        StorageDead(_3);
+        StorageLive(_5);
+        StorageLive(_6);
+        _6 = copy ((*_1).0: u16);
+        _5 = copy _6 as u32 (IntToInt);
+        StorageDead(_6);
+        _0 = BitOr(move _2, move _5);
+        StorageDead(_5);
+        StorageDead(_2);
+        return;
+    }
+}
+
+fn <impl at src/lib.rs:92:1: 92:13>::write_slice(_1: &mut Adler32, _2: &[u8]) -> () {
+    debug self => _1;
+    debug bytes => _2;
+    let mut _0: ();
+    let _3: ();
+
+    bb0: {
+        _3 = algo::<impl Adler32>::compute(move _1, move _2) -> [return: bb1, unwind continue];
+    }
+
+    bb1: {
+        return;
+    }
+}
+
+fn <impl at src/lib.rs:147:1: 147:25>::default() -> Adler32 {
+    let mut _0: Adler32;
+
+    bb0: {
+        _0 = const Adler32 {{ a: 1_u16, b: 0_u16 }};
+        return;
+    }
+}
+
+alloc16 (size: 4, align: 2) {
+    01 00 00 00                                     │ ....
+}
+
+fn <impl at src/lib.rs:154:1: 154:24>::finish(_1: &Adler32) -> u64 {
+    debug self => _1;
+    let mut _0: u64;
+    let mut _2: u32;
+    scope 1 (inlined Adler32::checksum) {
+        let mut _3: u32;
+        let mut _4: u32;
+        let mut _5: u16;
+        let mut _6: u32;
+        let mut _7: u16;
+        scope 2 (inlined convert::num::<impl From<u16> for u32>::from) {
+        }
+        scope 3 (inlined convert::num::<impl From<u16> for u32>::from) {
+        }
+    }
+    scope 4 (inlined convert::num::<impl From<u32> for u64>::from) {
+    }
+
+    bb0: {
+        StorageLive(_2);
+        StorageLive(_3);
+        StorageLive(_4);
+        StorageLive(_5);
+        _5 = copy ((*_1).1: u16);
+        _4 = copy _5 as u32 (IntToInt);
+        StorageDead(_5);
+        _3 = Shl(move _4, const 16_i32);
+        StorageDead(_4);
+        StorageLive(_6);
+        StorageLive(_7);
+        _7 = copy ((*_1).0: u16);
+        _6 = copy _7 as u32 (IntToInt);
+        StorageDead(_7);
+        _2 = BitOr(move _3, move _6);
+        StorageDead(_6);
+        StorageDead(_3);
+        _0 = copy _2 as u64 (IntToInt);
+        StorageDead(_2);
+        return;
+    }
+}
+
+fn <impl at src/lib.rs:154:1: 154:24>::write(_1: &mut Adler32, _2: &[u8]) -> () {
+    debug self => _1;
+    debug bytes => _2;
+    let mut _0: ();
+    let _3: ();
+
+    bb0: {
+        _3 = Adler32::write_slice(move _1, move _2) -> [return: bb1, unwind continue];
+    }
+
+    bb1: {
+        return;
+    }
+}
+
+fn adler32_slice(_1: &[u8]) -> u32 {
+    debug data => _1;
+    let mut _0: u32;
+    let mut _2: Adler32;
+    let _3: ();
+    let mut _4: &mut Adler32;
+    scope 1 {
+        debug h => _2;
+        scope 4 (inlined Adler32::checksum) {
+            let mut _5: u32;
+            let mut _6: u32;
+            let mut _7: u16;
+            let mut _8: u32;
+            let mut _9: u16;
+            scope 5 (inlined convert::num::<impl From<u16> for u32>::from) {
+            }
+            scope 6 (inlined convert::num::<impl From<u16> for u32>::from) {
+            }
+        }
+    }
+    scope 2 (inlined Adler32::new) {
+        scope 3 (inlined <Adler32 as Default>::default) {
+        }
+    }
+
+    bb0: {
+        StorageLive(_2);
+        _2 = const Adler32 {{ a: 1_u16, b: 0_u16 }};
+        StorageLive(_4);
+        _4 = &mut _2;
+        _3 = Adler32::write_slice(move _4, move _1) -> [return: bb1, unwind continue];
+    }
+
+    bb1: {
+        StorageDead(_4);
+        StorageLive(_5);
+        StorageLive(_6);
+        StorageLive(_7);
+        _7 = copy (_2.1: u16);
+        _6 = copy _7 as u32 (IntToInt);
+        StorageDead(_7);
+        _5 = Shl(move _6, const 16_i32);
+        StorageDead(_6);
+        StorageLive(_8);
+        StorageLive(_9);
+        _9 = copy (_2.0: u16);
+        _8 = copy _9 as u32 (IntToInt);
+        StorageDead(_9);
+        _0 = BitOr(move _5, move _8);
+        StorageDead(_8);
+        StorageDead(_5);
+        StorageDead(_2);
+        return;
+    }
+}
+
+alloc16 (size: 4, align: 2) {
+    01 00 00 00                                     │ ....
+}
+
+fn adler32(_1: R) -> Result<u32, std::io::Error> {
+    debug reader => _1;
+    let mut _0: std::result::Result<u32, std::io::Error>;
+    let mut _2: Adler32;
+    let mut _3: std::ops::ControlFlow<std::result::Result<std::convert::Infallible, std::io::Error>, &[u8]>;
+    let mut _4: std::result::Result<&[u8], std::io::Error>;
+    let mut _5: &mut R;
+    let mut _8: u32;
+    let _9: ();
+    let mut _10: &mut Adler32;
+    let _11: ();
+    let mut _12: &mut R;
+    scope 1 {
+        debug h => _2;
+        let _6: std::result::Result<std::convert::Infallible, std::io::Error>;
+        let _7: &[u8];
+        scope 2 {
+            debug len => _17;
+        }
+        scope 3 {
+            debug buf => _7;
+            scope 13 (inlined core::slice::<impl [u8]>::is_empty) {
+                let mut _17: usize;
+            }
+            scope 17 (inlined Adler32::checksum) {
+                let mut _21: u32;
+                let mut _22: u32;
+                let mut _23: u16;
+                let mut _24: u32;
+                let mut _25: u16;
+                scope 18 (inlined convert::num::<impl From<u16> for u32>::from) {
+                }
+                scope 19 (inlined convert::num::<impl From<u16> for u32>::from) {
+                }
+            }
+        }
+        scope 4 {
+            debug residual => _6;
+            scope 5 {
+                scope 14 (inlined #[track_caller] <Result<u32, std::io::Error> as FromResidual<Result<Infallible, std::io::Error>>>::from_residual) {
+                    let mut _18: isize;
+                    let _19: std::io::Error;
+                    let mut _20: bool;
+                    scope 15 {
+                        scope 16 (inlined <std::io::Error as From<std::io::Error>>::from) {
+                        }
+                    }
+                }
+            }
+        }
+        scope 6 {
+            debug val => _7;
+            scope 7 {
+            }
+        }
+        scope 10 (inlined <Result<&[u8], std::io::Error> as Try>::branch) {
+            let mut _13: isize;
+            let _14: &[u8];
+            let _15: std::io::Error;
+            let mut _16: std::result::Result<std::convert::Infallible, std::io::Error>;
+            scope 11 {
+            }
+            scope 12 {
+            }
+        }
+    }
+    scope 8 (inlined Adler32::new) {
+        scope 9 (inlined <Adler32 as Default>::default) {
+        }
+    }
+
+    bb0: {
+        StorageLive(_2);
+        _2 = const Adler32 {{ a: 1_u16, b: 0_u16 }};
+        goto -> bb1;
+    }
+
+    bb1: {
+        StorageLive(_3);
+        StorageLive(_4);
+        StorageLive(_5);
+        _5 = &mut _1;
+        _4 = <R as BufRead>::fill_buf(move _5) -> [return: bb2, unwind: bb10];
+    }
+
+    bb2: {
+        StorageDead(_5);
+        StorageLive(_13);
+        _13 = discriminant(_4);
+        switchInt(move _13) -> [0: bb13, 1: bb12, otherwise: bb3];
+    }
+
+    bb3: {
+        unreachable;
+    }
+
+    bb4: {
+        StorageLive(_8);
+        StorageLive(_21);
+        StorageLive(_22);
+        StorageLive(_23);
+        _23 = copy (_2.1: u16);
+        _22 = copy _23 as u32 (IntToInt);
+        StorageDead(_23);
+        _21 = Shl(move _22, const 16_i32);
+        StorageDead(_22);
+        StorageLive(_24);
+        StorageLive(_25);
+        _25 = copy (_2.0: u16);
+        _24 = copy _25 as u32 (IntToInt);
+        StorageDead(_25);
+        _8 = BitOr(move _21, move _24);
+        StorageDead(_24);
+        StorageDead(_21);
+        _0 = Result::<u32, std::io::Error>::Ok(move _8);
+        StorageDead(_8);
+        goto -> bb8;
+    }
+
+    bb5: {
+        StorageLive(_10);
+        _10 = &mut _2;
+        _9 = Adler32::write_slice(move _10, move _7) -> [return: bb6, unwind: bb10];
+    }
+
+    bb6: {
+        StorageDead(_10);
+        StorageLive(_12);
+        _12 = &mut _1;
+        _11 = <R as BufRead>::consume(move _12, move _17) -> [return: bb7, unwind: bb10];
+    }
+
+    bb7: {
+        StorageDead(_12);
+        goto -> bb1;
+    }
+
+    bb8: {
+        StorageDead(_2);
+        drop(_1) -> [return: bb9, unwind continue];
+    }
+
+    bb9: {
+        return;
+    }
+
+    bb10 (cleanup): {
+        drop(_1) -> [return: bb11, unwind terminate(cleanup)];
+    }
+
+    bb11 (cleanup): {
+        resume;
+    }
+
+    bb12: {
+        StorageLive(_15);
+        _15 = move ((_4 as Err).0: std::io::Error);
+        StorageLive(_16);
+        _16 = Result::<Infallible, std::io::Error>::Err(copy _15);
+        _3 = ControlFlow::<Result<Infallible, std::io::Error>, &[u8]>::Break(move _16);
+        StorageDead(_16);
+        StorageDead(_15);
+        StorageDead(_13);
+        StorageDead(_4);
+        StorageLive(_6);
+        _6 = move ((_3 as Break).0: std::result::Result<std::convert::Infallible, std::io::Error>);
+        StorageLive(_18);
+        StorageLive(_20);
+        _18 = discriminant(_6);
+        _20 = Eq(copy _18, const 1_isize);
+        assume(move _20);
+        StorageLive(_19);
+        _19 = copy ((_6 as Err).0: std::io::Error);
+        _0 = Result::<u32, std::io::Error>::Err(copy _19);
+        StorageDead(_19);
+        StorageDead(_20);
+        StorageDead(_18);
+        StorageDead(_6);
+        StorageDead(_3);
+        goto -> bb8;
+    }
+
+    bb13: {
+        StorageLive(_14);
+        _14 = copy ((_4 as Ok).0: &[u8]);
+        _3 = ControlFlow::<Result<Infallible, std::io::Error>, &[u8]>::Continue(copy _14);
+        StorageDead(_14);
+        StorageDead(_13);
+        StorageDead(_4);
+        _7 = copy ((_3 as Continue).0: &[u8]);
+        StorageDead(_3);
+        _17 = PtrMetadata(copy _7);
+        switchInt(copy _17) -> [0: bb4, otherwise: bb5];
+    }
+}
+
+alloc16 (size: 4, align: 2) {
+    01 00 00 00                                     │ ....
+}
+
+fn U32X4(_1: [u32; 4]) -> U32X4 {
+    let mut _0: algo::U32X4;
+
+    bb0: {
+        _0 = U32X4(move _1);
+        return;
+    }
+}
+
+// MIR FOR CTFE
+fn U32X4(_1: [u32; 4]) -> U32X4 {
+    let mut _0: algo::U32X4;
+
+    bb0: {
+        _0 = U32X4(move _1);
+        return;
+    }
+}
