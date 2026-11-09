@@ -1,0 +1,1425 @@
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -13,19 +13,33 @@
+ #![doc(test(attr(deny(unused_imports, unused_must_use))))]
+ #![cfg_attr(docsrs, feature(doc_cfg))]
+ #![warn(missing_debug_implementations)]
+-#![forbid(unsafe_code)]
++#![deny(unsafe_code)] // was `forbid`; Verus `assume_specification` expands to unsafe code (trusted.rs only)
+ #![cfg_attr(not(feature = "std"), no_std)]
+ 
+ #[cfg(not(feature = "std"))]
+ extern crate core as std;
+ 
++use vstd::prelude::*;
++
+ mod algo;
+ 
++/// Specification of Adler-32 (ghost; erased from normal builds).
++pub mod spec;
++#[allow(unused_imports)]
++use crate::spec::*;
++
++/// Trusted seams to std, compiled only under Verus.
++#[cfg(verus_keep_ghost)]
++#[allow(unsafe_code)]
++mod trusted;
++
+ use std::hash::Hasher;
+ 
+ #[cfg(feature = "std")]
+ use std::io::{self, BufRead};
+ 
++verus! {
++
+ /// Adler-32 checksum calculator.
+ ///
+ /// An instance of this type is equivalent to an Adler-32 checksum: It can be created in the default
+@@ -89,10 +103,22 @@
+     b: u16,
+ }
+ 
++/// The abstract state is the pair `(a, b)` of running sums.
++impl View for Adler32 {
++    type V = (int, int);
++
++    closed spec fn view(&self) -> (int, int) {
++        (self.a as int, self.b as int)
++    }
++}
++
+ impl Adler32 {
+     /// Creates a new Adler-32 instance with default state.
+     #[inline]
+-    pub fn new() -> Self {
++    pub fn new() -> (r: Self)
++        ensures
++            r@ == (1int, 0int),
++    {
+         Self::default()
+     }
+ 
+@@ -122,7 +148,14 @@
+     /// assert_eq!(sum.checksum(), whole);
+     /// ```
+     #[inline]
+-    pub const fn from_checksum(sum: u32) -> Self {
++    pub const fn from_checksum(sum: u32) -> (r: Self)
++        ensures
++            r@ == (sum as int % 65536, sum as int / 65536),
++    {
++        proof {
++            assert(sum as u16 == sum % 65536) by (bit_vector);
++            assert((sum >> 16) as u16 == sum / 65536) by (bit_vector);
++        }
+         Adler32 {
+             a: sum as u16,
+             b: (sum >> 16) as u16,
+@@ -131,7 +164,18 @@
+ 
+     /// Returns the calculated checksum at this point in time.
+     #[inline]
+-    pub fn checksum(&self) -> u32 {
++    pub fn checksum(&self) -> (r: u32)
++        ensures
++            r == pack(self@),
++    {
++        let ghost (a, b) = (self.a as u32, self.b as u32);
++        proof {
++            assert((b << 16) | a == b * 65536 + a) by (bit_vector)
++                requires
++                    a < 65536,
++                    b < 65536,
++            ;
++        }
+         (u32::from(self.b) << 16) | u32::from(self.a)
+     }
+ 
+@@ -139,25 +183,37 @@
+     ///
+     /// If efficiency matters, this should be called with Byte slices that contain at least a few
+     /// thousand Bytes.
+-    pub fn write_slice(&mut self, bytes: &[u8]) {
++    pub fn write_slice(&mut self, bytes: &[u8])
++        ensures
++            final(self)@ == adler_from(old(self)@.0 % base(), old(self)@.1 % base(), bytes@),
++    {
+         self.compute(bytes);
+     }
+ }
+ 
+ impl Default for Adler32 {
+     #[inline]
+-    fn default() -> Self {
++    fn default() -> (r: Self)
++        ensures
++            r@ == (1int, 0int),
++    {
+         Adler32 { a: 1, b: 0 }
+     }
+ }
+ 
+ impl Hasher for Adler32 {
+     #[inline]
+-    fn finish(&self) -> u64 {
++    fn finish(&self) -> (r: u64)
++        ensures
++            r == pack(self@),
++    {
+         u64::from(self.checksum())
+     }
+ 
+-    fn write(&mut self, bytes: &[u8]) {
++    fn write(&mut self, bytes: &[u8])
++        ensures
++            final(self)@ == adler_from(old(self)@.0 % base(), old(self)@.1 % base(), bytes@),
++    {
+         self.write_slice(bytes);
+     }
+ }
+@@ -167,12 +223,17 @@
+ /// This is a convenience function around the [`Adler32`] type.
+ ///
+ /// [`Adler32`]: struct.Adler32.html
+-pub fn adler32_slice(data: &[u8]) -> u32 {
++pub fn adler32_slice(data: &[u8]) -> (r: u32)
++    ensures
++        r == adler32_spec(data@),
++{
+     let mut h = Adler32::new();
+     h.write_slice(data);
+     h.checksum()
+ }
+ 
++} // verus!
++
+ /// Calculates the Adler-32 checksum of a `BufRead`'s contents.
+ ///
+ /// The passed `BufRead` implementor will be read until it reaches EOF (or until it reports an
+--- a/src/algo.rs
++++ b/src/algo.rs
+@@ -1,8 +1,20 @@
+ use crate::Adler32;
+ use std::ops::{AddAssign, MulAssign, RemAssign};
++use vstd::prelude::*;
++#[cfg(verus_keep_ghost)]
++use crate::spec::*;
++#[cfg(verus_keep_ghost)]
++use crate::trusted::*;
++#[cfg(verus_keep_ghost)]
++use vstd::std_specs::ops::{AddAssignSpecImpl, MulAssignSpecImpl, RemAssignSpecImpl};
++
++verus! {
+ 
+ impl Adler32 {
+-    pub(crate) fn compute(&mut self, bytes: &[u8]) {
++    pub(crate) fn compute(&mut self, bytes: &[u8])
++        ensures
++            final(self)@ == adler_from(old(self)@.0 % base(), old(self)@.1 % base(), bytes@),
++    {
+         // The basic algorithm is, for every byte:
+         //   a = (a + byte) % MOD
+         //   b = (b + a) % MOD
+@@ -52,6 +64,11 @@
+         const MOD: u32 = 65521;
+         const CHUNK_SIZE: usize = 5552 * 4;
+ 
++        // Verus: ghost names for the inputs.
++        let ghost data = bytes@;
++        let ghost a0 = old(self)@.0;
++        let ghost b0 = old(self)@.1;
++
+         let mut a = u32::from(self.a);
+         let mut b = u32::from(self.b);
+         let mut a_vec = U32X4([0; 4]);
+@@ -59,61 +76,347 @@
+ 
+         let (bytes, remainder) = bytes.split_at(bytes.len() - bytes.len() % 4);
+ 
++        // Verus: `al` is the 4-aligned prefix; `g` counts the 4-byte groups folded into the lanes.
++        let ghost al = bytes@;
++        let ghost full = al.len() as int - (al.len() as int) % (CHUNK_SIZE as int);
++        let ghost mut g: int = 0;
++        proof {
++            assert(data =~= al + remainder@);
++            lemma_lanes_zero(al);
++            assert(lanes_reduced(a_vec.0@, b_vec.0@, al, 0)) by {
++                assert(b_vec_bound(0) == base() - 1);
++                assert forall|j: int| 0 <= j < 4 implies #[trigger] lane_ok(a_vec.0@, b_vec.0@, al, j, 0, 0) by {
++                    assert(lane_sum(al, j, 0) == 0 && lane_wsum(al, j, 0) == 0);
++                }
++            }
++        }
++
+         // iterate over 4 bytes at a time
+-        let chunk_iter = bytes.chunks_exact(CHUNK_SIZE);
++        let mut chunk_iter = bytes.chunks_exact(CHUNK_SIZE);
+         let remainder_chunk = chunk_iter.remainder();
+-        for chunk in chunk_iter {
+-            for byte_vec in chunk.chunks_exact(4) {
++        proof {
++            assert(0 <= full <= al.len()) by {
++                vstd::arithmetic::div_mod::lemma_mod_bound(al.len() as int, CHUNK_SIZE as int);
++            }
++            assert(full % (CHUNK_SIZE as int) == 0) by {
++                vstd::arithmetic::div_mod::lemma_fundamental_div_mod(al.len() as int, CHUNK_SIZE as int);
++                vstd::arithmetic::div_mod::lemma_mod_multiples_basic(al.len() as int / (CHUNK_SIZE as int), CHUNK_SIZE as int);
++            }
++            assert(al.take(full) =~= al.subrange(0, full));
++        }
++        // Verus: `while let` is what `for chunk in chunk_iter` desugars to; see trusted.rs (T3).
++        while let Some(chunk) = chunk_iter.next()
++            invariant
++                al == bytes@,
++                al.len() % 4 == 0,
++                full == al.len() as int - (al.len() as int) % (CHUNK_SIZE as int),
++                remainder_chunk@ == al.skip(full),
++                chunks_exact_size(chunk_iter) == CHUNK_SIZE,
++                chunks_exact_rest(chunk_iter) == al.subrange(4 * g, full),
++                0 <= 4 * g <= full,
++                (full - 4 * g) % (CHUNK_SIZE as int) == 0,
++                a == a0,
++                0 <= a0 < 65536,
++                0 <= b0 < 65536,
++                b < 65536,
++                (b as int) % base() == (b0 + 4 * g * a0) % base(),
++                lanes_reduced(a_vec.0@, b_vec.0@, al, g),
++            ensures
++                chunks_exact_rest(chunk_iter).len() < CHUNK_SIZE,
++            decreases chunks_exact_rest(chunk_iter).len(),
++        {
++            let ghost g_start = g;
++            proof {
++                assert(chunk@ =~= al.subrange(4 * g, 4 * g + CHUNK_SIZE));
++                lemma_lanes_to_partial(a_vec.0@, b_vec.0@, al, g);
++            }
++            let mut byte_vec_iter = chunk.chunks_exact(4);
++            proof {
++                assert(chunk@.take(CHUNK_SIZE as int) =~= al.subrange(4 * g, 4 * g_start + CHUNK_SIZE));
++            }
++            // Verus: `while let` is what `for byte_vec in chunk.chunks_exact(4)` desugars to.
++            while let Some(byte_vec) = byte_vec_iter.next()
++                invariant
++                    al == bytes@,
++                    4 * g_start + CHUNK_SIZE <= al.len(),
++                    chunks_exact_size(byte_vec_iter) == 4,
++                    chunks_exact_rest(byte_vec_iter) == al.subrange(4 * g, 4 * g_start + CHUNK_SIZE),
++                    g_start <= g <= g_start + 5552,
++                    lanes_partial(a_vec.0@, b_vec.0@, al, g, g - g_start),
++                ensures
++                    chunks_exact_rest(byte_vec_iter).len() < 4,
++                decreases chunks_exact_rest(byte_vec_iter).len(),
++            {
++                let ghost av = a_vec.0@;
++                let ghost bv = b_vec.0@;
++                proof {
++                    assert(byte_vec@ =~= al.subrange(4 * g, 4 * g + 4));
++                    assert(byte_vec@[0] == al[4 * g] && byte_vec@[1] == al[4 * g + 1]);
++                    assert(byte_vec@[2] == al[4 * g + 2] && byte_vec@[3] == al[4 * g + 3]);
++                    lemma_lanes_partial_bounds(av, bv, al, g, g - g_start);
++                }
+                 let val = U32X4::from(byte_vec);
+                 a_vec += val;
+                 b_vec += a_vec;
++                proof {
++                    lemma_lanes_partial_step(av, bv, a_vec.0@, b_vec.0@, al, g, g - g_start);
++                    assert(al.subrange(4 * g, 4 * g_start + CHUNK_SIZE).skip(4)
++                        =~= al.subrange(4 * (g + 1), 4 * g_start + CHUNK_SIZE));
++                    g = g + 1;
++                }
++            }
++            proof {
++                assert(g == g_start + 5552);
++                assert(CHUNK_SIZE as int * a0 <= 5552 * 4 * 65535) by (nonlinear_arith)
++                    requires 0 <= a0 < 65536;
+             }
++            let ghost b_pre = b as int;
++            let ghost av = a_vec.0@;
++            let ghost bv = b_vec.0@;
+ 
+             b += CHUNK_SIZE as u32 * a;
+             a_vec %= MOD;
+             b_vec %= MOD;
+             b %= MOD;
++            proof {
++                lemma_lanes_reduce(av, bv, a_vec.0@, b_vec.0@, al, g, g - g_start);
++                lemma_b_chunk(b_pre, b as int, b0, a0, g_start, g, CHUNK_SIZE as int);
++                assert(al.subrange(4 * g_start, full).skip(CHUNK_SIZE as int)
++                    =~= al.subrange(4 * g, full));
++                vstd::arithmetic::div_mod::lemma_mod_multiples_vanish(-1, full - 4 * g_start, CHUNK_SIZE as int);
++            }
+         }
+         // special-case the final chunk because it may be shorter than the rest
+-        for byte_vec in remainder_chunk.chunks_exact(4) {
++        let ghost g_start = g;
++        proof {
++            lemma_small_mod_zero(full - 4 * g, CHUNK_SIZE as int);
++            assert(4 * g == full);
++            lemma_lanes_to_partial(a_vec.0@, b_vec.0@, al, g);
++        }
++        // Verus: `while let` is what `for byte_vec in remainder_chunk.chunks_exact(4)` desugars to.
++        let mut byte_vec_iter = remainder_chunk.chunks_exact(4);
++        proof {
++            assert(remainder_chunk@.take(remainder_chunk@.len() as int) =~= al.subrange(4 * g, al.len() as int));
++        }
++        while let Some(byte_vec) = byte_vec_iter.next()
++            invariant
++                al == bytes@,
++                al.len() - 4 * g_start < CHUNK_SIZE,
++                chunks_exact_size(byte_vec_iter) == 4,
++                chunks_exact_rest(byte_vec_iter) == al.subrange(4 * g, al.len() as int),
++                g_start <= g,
++                4 * g <= al.len(),
++                (al.len() - 4 * g) % 4 == 0,
++                lanes_partial(a_vec.0@, b_vec.0@, al, g, g - g_start),
++            ensures
++                chunks_exact_rest(byte_vec_iter).len() < 4,
++            decreases chunks_exact_rest(byte_vec_iter).len(),
++        {
++            let ghost av = a_vec.0@;
++            let ghost bv = b_vec.0@;
++            proof {
++                assert(byte_vec@ =~= al.subrange(4 * g, 4 * g + 4));
++                assert(byte_vec@[0] == al[4 * g] && byte_vec@[1] == al[4 * g + 1]);
++                assert(byte_vec@[2] == al[4 * g + 2] && byte_vec@[3] == al[4 * g + 3]);
++                lemma_lanes_partial_bounds(av, bv, al, g, g - g_start);
++            }
+             let val = U32X4::from(byte_vec);
+             a_vec += val;
+             b_vec += a_vec;
++            proof {
++                lemma_lanes_partial_step(av, bv, a_vec.0@, b_vec.0@, al, g, g - g_start);
++                assert(al.subrange(4 * g, al.len() as int).skip(4)
++                    =~= al.subrange(4 * (g + 1), al.len() as int));
++                g = g + 1;
++            }
++        }
++        proof {
++            assert(4 * g == al.len());
++            assert(remainder_chunk@.len() * a0 <= 5552 * 4 * 65535) by (nonlinear_arith)
++                requires 0 <= a0 < 65536, remainder_chunk@.len() < 5552 * 4;
+         }
++        let ghost b_pre = b as int;
++        let ghost av = a_vec.0@;
++        let ghost bv = b_vec.0@;
+         b += remainder_chunk.len() as u32 * a;
+         a_vec %= MOD;
+         b_vec %= MOD;
+         b %= MOD;
++        let ghost m = g;
++        let ghost b_red = b as int;
++        let ghost av0 = a_vec.0@;
++        let ghost bv0 = b_vec.0@;
++        proof {
++            lemma_lanes_reduce(av, bv, av0, bv0, al, g, g - g_start);
++            lemma_b_chunk(b_pre, b_red, b0, a0, g_start, g, remainder_chunk@.len() as int);
++            assert(av0[0] < base() && bv0[0] < base() && av0[1] < base() && bv0[1] < base());
++            assert(av0[2] < base() && bv0[2] < base() && av0[3] < base() && bv0[3] < base());
++        }
+ 
+         // combine the sub-sum results into the main sum
+         b_vec *= 4;
+         b_vec.0[1] += MOD - a_vec.0[1];
+         b_vec.0[2] += (MOD - a_vec.0[2]) * 2;
+         b_vec.0[3] += (MOD - a_vec.0[3]) * 3;
+-        for &av in a_vec.0.iter() {
++        let ghost bv1 = b_vec.0@;
++        // Verus: `it` names the iterator for the invariant.
++        for &av in it: a_vec.0.iter()
++            invariant
++                a_vec.0@ == av0,
++                it.seq().unref() == av0,
++                a == a0 + prefix_sum(av0, it.index() as int),
++                forall|j: int| 0 <= j < 4 ==> #[trigger] av0[j] < base(),
++                0 <= a0 < 65536,
++        {
++            proof {
++                lemma_prefix_sum_bound(av0, it.index() as int + 1, base());
++            }
+             a += av;
+         }
+-        for &bv in b_vec.0.iter() {
++        for &bv in it: b_vec.0.iter()
++            invariant
++                b_vec.0@ == bv1,
++                it.seq().unref() == bv1,
++                b == b_red + prefix_sum(bv1, it.index() as int),
++                0 <= b_red < base(),
++                forall|j: int| 0 <= j < 4 ==> #[trigger] bv1[j] < 8 * base(),
++        {
++            proof {
++                lemma_prefix_sum_bound(bv1, it.index() as int + 1, 8 * base());
++            }
+             b += bv;
+         }
++        let ghost aa = a as int;
++        let ghost bb = b as int;
++        proof {
++            lemma_prefix_sum_bound(av0, 4, base());
++            lemma_prefix_sum_bound(bv1, 4, 8 * base());
++        }
+ 
+         // iterate over the remaining few bytes in serial
+-        for &byte in remainder.iter() {
++        // Verus: `it` names the iterator for the invariant.
++        for &byte in it: remainder.iter()
++            invariant
++                it.seq().unref() == remainder@,
++                remainder@.len() < 4,
++                0 <= aa <= 65535 + 4 * base(),
++                0 <= bb <= base() + 32 * base(),
++                a == aa + sum(remainder@.take(it.index() as int)),
++                b == bb + it.index() * aa + wsum(remainder@.take(it.index() as int)),
++        {
++            let ghost k = it.index() as int;
++            proof {
++                let t = remainder@.take(k + 1);
++                assert(t.drop_last() =~= remainder@.take(k));
++                lemma_sum_bounds(remainder@.take(k));
++                lemma_sum_bounds(t);
++                assert(wsum(t) <= 4 * 765) by {
++                    reveal_with_fuel(wsum, 5);
++                    lemma_wsum_bound(t);
++                }
++                assert((k + 1) * aa == k * aa + aa) by (nonlinear_arith);
++                assert((k + 1) * aa <= 4 * aa) by (nonlinear_arith) requires k < 3, aa >= 0;
++            }
+             a += u32::from(byte);
+             b += a;
+         }
++        proof {
++            assert(remainder@.take(remainder@.len() as int) =~= remainder@);
++            lemma_combine(data, al, remainder@, m, a0, b0, b_red, av0, bv0, bv1, a as int, b as int);
++            lemma_adler_from_unreduced(a0, b0, data);
++        }
+ 
+         self.a = (a % MOD) as u16;
+         self.b = (b % MOD) as u16;
+     }
+ }
+ 
++#[cfg(verus_keep_ghost)] // spec-only: how `+=`, `%=` and `*=` behave
++impl AddAssignSpecImpl<U32X4> for U32X4 {
++    closed spec fn obeys_add_assign_spec() -> bool {
++        true
++    }
++
++    closed spec fn add_assign_req(&self, rhs: U32X4) -> bool {
++        &&& self.0[0] + rhs.0[0] <= u32::MAX
++        &&& self.0[1] + rhs.0[1] <= u32::MAX
++        &&& self.0[2] + rhs.0[2] <= u32::MAX
++        &&& self.0[3] + rhs.0[3] <= u32::MAX
++    }
++
++    closed spec fn add_assign_spec(&self, rhs: U32X4) -> &U32X4 {
++        &U32X4(
++            [
++                (self.0[0] + rhs.0[0]) as u32,
++                (self.0[1] + rhs.0[1]) as u32,
++                (self.0[2] + rhs.0[2]) as u32,
++                (self.0[3] + rhs.0[3]) as u32,
++            ],
++        )
++    }
++}
++
++#[cfg(verus_keep_ghost)] // spec-only: how `+=`, `%=` and `*=` behave
++impl RemAssignSpecImpl<u32> for U32X4 {
++    closed spec fn obeys_rem_assign_spec() -> bool {
++        true
++    }
++
++    closed spec fn rem_assign_req(&self, rhs: u32) -> bool {
++        rhs != 0
++    }
++
++    closed spec fn rem_assign_spec(&self, rhs: u32) -> &U32X4 {
++        &U32X4(
++            [
++                (self.0[0] % rhs) as u32,
++                (self.0[1] % rhs) as u32,
++                (self.0[2] % rhs) as u32,
++                (self.0[3] % rhs) as u32,
++            ],
++        )
++    }
++}
++
++#[cfg(verus_keep_ghost)] // spec-only: how `+=`, `%=` and `*=` behave
++impl MulAssignSpecImpl<u32> for U32X4 {
++    closed spec fn obeys_mul_assign_spec() -> bool {
++        true
++    }
++
++    closed spec fn mul_assign_req(&self, rhs: u32) -> bool {
++        &&& self.0[0] * rhs <= u32::MAX
++        &&& self.0[1] * rhs <= u32::MAX
++        &&& self.0[2] * rhs <= u32::MAX
++        &&& self.0[3] * rhs <= u32::MAX
++    }
++
++    closed spec fn mul_assign_spec(&self, rhs: u32) -> &U32X4 {
++        &U32X4(
++            [
++                (self.0[0] * rhs) as u32,
++                (self.0[1] * rhs) as u32,
++                (self.0[2] * rhs) as u32,
++                (self.0[3] * rhs) as u32,
++            ],
++        )
++    }
++}
++
+ #[derive(Copy, Clone)]
+ struct U32X4([u32; 4]);
+ 
+ impl U32X4 {
+     #[inline]
+-    fn from(bytes: &[u8]) -> Self {
++    fn from(bytes: &[u8]) -> (r: Self)
++        requires
++            bytes@.len() >= 4,
++        ensures
++            r.0[0] == bytes@[0],
++            r.0[1] == bytes@[1],
++            r.0[2] == bytes@[2],
++            r.0[3] == bytes@[3],
++    {
+         U32X4([
+             u32::from(bytes[0]),
+             u32::from(bytes[1]),
+@@ -126,30 +429,44 @@
+ impl AddAssign<Self> for U32X4 {
+     #[inline]
+     fn add_assign(&mut self, other: Self) {
++        let ghost s0 = *self;
+         // Implement this in a primitive manner to help out the compiler a bit.
+         self.0[0] += other.0[0];
+         self.0[1] += other.0[1];
+         self.0[2] += other.0[2];
+         self.0[3] += other.0[3];
++        proof {
++            assert(self.0 =~= [(s0.0[0] + other.0[0]) as u32, (s0.0[1] + other.0[1]) as u32, (s0.0[2] + other.0[2]) as u32, (s0.0[3] + other.0[3]) as u32]);
++        }
+     }
+ }
+ 
+ impl RemAssign<u32> for U32X4 {
+     #[inline]
+     fn rem_assign(&mut self, quotient: u32) {
++        let ghost s0 = *self;
+         self.0[0] %= quotient;
+         self.0[1] %= quotient;
+         self.0[2] %= quotient;
+         self.0[3] %= quotient;
++        proof {
++            assert(self.0 =~= [(s0.0[0] % quotient) as u32, (s0.0[1] % quotient) as u32, (s0.0[2] % quotient) as u32, (s0.0[3] % quotient) as u32]);
++        }
+     }
+ }
+ 
+ impl MulAssign<u32> for U32X4 {
+     #[inline]
+     fn mul_assign(&mut self, rhs: u32) {
++        let ghost s0 = *self;
+         self.0[0] *= rhs;
+         self.0[1] *= rhs;
+         self.0[2] *= rhs;
+         self.0[3] *= rhs;
++        proof {
++            assert(self.0 =~= [(s0.0[0] * rhs) as u32, (s0.0[1] * rhs) as u32, (s0.0[2] * rhs) as u32, (s0.0[3] * rhs) as u32]);
++        }
+     }
+ }
++
++} // verus!
+--- /dev/null
++++ b/src/spec.rs
+@@ -0,0 +1,631 @@
++//! Specification of Adler-32 (ghost code only; erased from normal builds).
++//!
++//! The contracts in `lib.rs` are stated with `adler_from` and `adler32_spec`, the textbook
++//! per-byte definition from RFC 1950 §8.2:
++//!
++//! ```text
++//! A = 1 + D1 + D2 + ... + Dn (mod 65521)
++//! B = (1 + D1) + (1 + D1 + D2) + ... + (1 + D1 + D2 + ... + Dn) (mod 65521)
++//! Adler-32(D) = B * 65536 + A
++//! ```
++//!
++//! Everything else here (unreduced sums, lane sums and the lemmas) is proof machinery for
++//! the vectorised, deferred-modulo implementation in `algo.rs`. Nothing here is trusted:
++//! every `spec fn` is a definition and every `proof fn` is checked by Verus.
++#![allow(unused_imports)]
++
++#[cfg(verus_keep_ghost)] // ghost items: they do not exist in the erased (normal) build
++use vstd::arithmetic::div_mod::{
++    lemma_add_mod_noop, lemma_fundamental_div_mod, lemma_mod_bound, lemma_mod_multiples_vanish,
++    lemma_mod_twice, lemma_sub_mod_noop,
++};
++use vstd::prelude::*;
++
++verus! {
++
++// ---------------------------------------------------------------- the specification
++
++/// The Adler-32 modulus (RFC 1950 calls it BASE), the largest prime below 2^16.
++pub open spec fn base() -> int {
++    65521
++}
++
++/// One Adler-32 round on the state `(a, b)`.
++pub open spec fn adler_step(ab: (int, int), d: u8) -> (int, int) {
++    let a = (ab.0 + d) % base();
++    (a, (ab.1 + a) % base())
++}
++
++/// Adler-32 rounds over `data` from the state `(a, b)` (first byte first).
++pub open spec fn adler_from(a: int, b: int, data: Seq<u8>) -> (int, int)
++    decreases data.len(),
++{
++    if data.len() == 0 {
++        (a, b)
++    } else {
++        adler_step(adler_from(a, b, data.drop_last()), data.last())
++    }
++}
++
++/// Packs the state into the 32-bit checksum: `b` in the high half, `a` in the low half.
++pub open spec fn pack(ab: (int, int)) -> int {
++    ab.1 * 65536 + ab.0
++}
++
++/// The Adler-32 checksum of `data` (initial state `a = 1, b = 0`).
++pub open spec fn adler32_spec(data: Seq<u8>) -> int {
++    pack(adler_from(1, 0, data))
++}
++
++// ---------------------------------------------------------------- unreduced sums
++
++/// `D1 + ... + Dn`.
++pub open spec fn sum(s: Seq<u8>) -> int
++    decreases s.len(),
++{
++    if s.len() == 0 {
++        0
++    } else {
++        sum(s.drop_last()) + s.last()
++    }
++}
++
++/// Sum of the prefix sums of `s`, i.e. `n*D1 + (n-1)*D2 + ... + 1*Dn`.
++pub open spec fn wsum(s: Seq<u8>) -> int
++    decreases s.len(),
++{
++    if s.len() == 0 {
++        0
++    } else {
++        wsum(s.drop_last()) + sum(s)
++    }
++}
++
++/// Sum of lane `j` over the first `m` groups of 4: `s[j] + s[4+j] + ... + s[4(m-1)+j]`.
++pub open spec fn lane_sum(s: Seq<u8>, j: int, m: int) -> int
++    decreases m,
++{
++    if m <= 0 {
++        0
++    } else {
++        lane_sum(s, j, m - 1) + s[4 * (m - 1) + j]
++    }
++}
++
++/// Running total of `lane_sum` over groups, as the vector loop's `b_vec += a_vec` builds it.
++pub open spec fn lane_wsum(s: Seq<u8>, j: int, m: int) -> int
++    decreases m,
++{
++    if m <= 0 {
++        0
++    } else {
++        lane_wsum(s, j, m - 1) + lane_sum(s, j, m)
++    }
++}
++
++pub open spec fn lanes_sum(s: Seq<u8>, m: int) -> int {
++    lane_sum(s, 0, m) + lane_sum(s, 1, m) + lane_sum(s, 2, m) + lane_sum(s, 3, m)
++}
++
++/// What the combine step of `compute` adds to `b`: `sum_j (4*lane_wsum_j - j*lane_sum_j)`.
++pub open spec fn lanes_wsum(s: Seq<u8>, m: int) -> int {
++    4 * (lane_wsum(s, 0, m) + lane_wsum(s, 1, m) + lane_wsum(s, 2, m) + lane_wsum(s, 3, m))
++        - lane_sum(s, 1, m) - 2 * lane_sum(s, 2, m) - 3 * lane_sum(s, 3, m)
++}
++
++/// `0 + 1 + ... + t`.
++pub open spec fn tri(t: int) -> int
++    decreases t,
++{
++    if t <= 0 {
++        0
++    } else {
++        tri(t - 1) + t
++    }
++}
++
++/// Bound on `b_vec` lanes after `t` groups since the last reduction (given lanes start `< base()`):
++/// the `n*65520 + n(n+1)/2*255` of the comment in `compute`, plus the starting value.
++pub open spec fn b_vec_bound(t: int) -> int {
++    (base() - 1) * (t + 1) + 255 * tri(t)
++}
++
++// ---------------------------------------------------------------- lemmas
++
++pub proof fn lemma_sum_bounds(s: Seq<u8>)
++    ensures
++        0 <= sum(s) <= 255 * s.len(),
++        0 <= wsum(s),
++    decreases s.len(),
++{
++    if s.len() > 0 {
++        lemma_sum_bounds(s.drop_last());
++    }
++}
++
++pub proof fn lemma_sum_append(x: Seq<u8>, y: Seq<u8>)
++    ensures
++        sum(x + y) == sum(x) + sum(y),
++        wsum(x + y) == wsum(x) + y.len() * sum(x) + wsum(y),
++    decreases y.len(),
++{
++    if y.len() == 0 {
++        assert(x + y =~= x);
++    } else {
++        lemma_sum_append(x, y.drop_last());
++        assert((x + y).drop_last() =~= x + y.drop_last());
++        assert(y.len() * sum(x) == (y.len() - 1) * sum(x) + sum(x)) by (nonlinear_arith);
++    }
++}
++
++/// The deferred-modulo identity: Adler-32 rounds from reduced `(a, b)` equal the unreduced
++/// sums reduced once at the end.
++pub proof fn lemma_adler_from_unreduced(a: int, b: int, s: Seq<u8>)
++    requires
++        a >= 0,
++        b >= 0,
++    ensures
++        adler_from(a % base(), b % base(), s) == (
++            (a + sum(s)) % base(),
++            (b + s.len() * a + wsum(s)) % base(),
++        ),
++    decreases s.len(),
++{
++    if s.len() > 0 {
++        let s1 = s.drop_last();
++        let d = s.last();
++        lemma_adler_from_unreduced(a, b, s1);
++        lemma_sum_bounds(s1);
++        let x = (a + sum(s1)) % base();
++        let y = (b + s1.len() * a + wsum(s1)) % base();
++        assert(adler_from(a % base(), b % base(), s) == adler_step((x, y), d));
++        // a' = (x + d) % MOD == (a + sum(s)) % MOD
++        lemma_add_mod_noop(a + sum(s1), d as int, base());
++        lemma_mod_twice(d as int, base());
++        assert((x + d) % base() == (a + sum(s)) % base()) by {
++            lemma_add_mod_noop(x, d as int, base());
++            lemma_mod_twice(a + sum(s1), base());
++        }
++        let a2 = (a + sum(s)) % base();
++        // b' = (y + a') % MOD == (b + n*a + wsum(s)) % MOD
++        lemma_add_mod_noop(b + s1.len() * a + wsum(s1), a + sum(s), base());
++        lemma_add_mod_noop(y, a2, base());
++        lemma_mod_twice(b + s1.len() * a + wsum(s1), base());
++        lemma_mod_twice(a + sum(s), base());
++        assert(s.len() * a == s1.len() * a + a) by (nonlinear_arith)
++            requires
++                s.len() == s1.len() + 1,
++        ;
++    }
++}
++
++/// The lane decomposition behind the 4-way unrolled loop: for the first `4m` bytes,
++/// `sum` is the sum of the 4 lane sums and `wsum` is `lanes_wsum`.
++pub proof fn lemma_lanes(s: Seq<u8>, m: int)
++    requires
++        0 <= m,
++        4 * m <= s.len(),
++    ensures
++        sum(s.take(4 * m)) == lanes_sum(s, m),
++        wsum(s.take(4 * m)) == lanes_wsum(s, m),
++    decreases m,
++{
++    if m > 0 {
++        lemma_lanes(s, m - 1);
++        lemma_lane_step(s, m - 1);
++        let t = s.take(4 * (m - 1));
++        let g = s.subrange(4 * (m - 1), 4 * m);
++        assert(s.take(4 * m) =~= t + g);
++        lemma_sum_append(t, g);
++        // unfold sum / wsum of the 4-byte group
++        assert(g.drop_last().drop_last().drop_last().drop_last() =~= Seq::<u8>::empty());
++        assert(sum(g) == g[0] + g[1] + g[2] + g[3]) by {
++            reveal_with_fuel(sum, 5);
++        }
++        assert(wsum(g) == 4 * g[0] + 3 * g[1] + 2 * g[2] + g[3]) by {
++            reveal_with_fuel(wsum, 5);
++            reveal_with_fuel(sum, 5);
++        }
++        let b = 4 * (m - 1);
++        assert(g[0] == s[b] && g[1] == s[b + 1] && g[2] == s[b + 2] && g[3] == s[b + 3]);
++        assert(lane_sum(s, 0, m) == lane_sum(s, 0, m - 1) + s[b]);
++        assert(lane_sum(s, 1, m) == lane_sum(s, 1, m - 1) + s[b + 1]);
++        assert(lane_sum(s, 2, m) == lane_sum(s, 2, m - 1) + s[b + 2]);
++        assert(lane_sum(s, 3, m) == lane_sum(s, 3, m - 1) + s[b + 3]);
++        assert(lane_wsum(s, 0, m) == lane_wsum(s, 0, m - 1) + lane_sum(s, 0, m));
++        assert(lane_wsum(s, 1, m) == lane_wsum(s, 1, m - 1) + lane_sum(s, 1, m));
++        assert(lane_wsum(s, 2, m) == lane_wsum(s, 2, m - 1) + lane_sum(s, 2, m));
++        assert(lane_wsum(s, 3, m) == lane_wsum(s, 3, m - 1) + lane_sum(s, 3, m));
++    }
++}
++
++/// Group `m` of `s` (bytes `4m .. 4m+4`) extends each lane by one element.
++pub proof fn lemma_lane_step(s: Seq<u8>, m: int)
++    requires
++        0 <= m,
++    ensures
++        forall|j: int|
++            lane_sum(s, j, m + 1) == lane_sum(s, j, m) + s[4 * m + j],
++        forall|j: int|
++            lane_wsum(s, j, m + 1) == lane_wsum(s, j, m) + lane_sum(s, j, m + 1),
++{
++}
++
++/// Lane sums only look at the first `4m` bytes.
++pub proof fn lemma_lane_prefix(s: Seq<u8>, t: Seq<u8>, j: int, m: int)
++    requires
++        0 <= j < 4,
++        0 <= m,
++        4 * m <= s.len(),
++        4 * m <= t.len(),
++        s.take(4 * m) == t.take(4 * m),
++    ensures
++        lane_sum(s, j, m) == lane_sum(t, j, m),
++        lane_wsum(s, j, m) == lane_wsum(t, j, m),
++    decreases m,
++{
++    if m > 0 {
++        assert(s.take(4 * (m - 1)) =~= t.take(4 * (m - 1))) by {
++            assert(s.take(4 * (m - 1)) =~= s.take(4 * m).take(4 * (m - 1)));
++            assert(t.take(4 * (m - 1)) =~= t.take(4 * m).take(4 * (m - 1)));
++        }
++        lemma_lane_prefix(s, t, j, m - 1);
++        assert(s[4 * (m - 1) + j] == s.take(4 * m)[4 * (m - 1) + j]);
++        assert(t[4 * (m - 1) + j] == t.take(4 * m)[4 * (m - 1) + j]);
++    }
++}
++
++pub proof fn lemma_tri(t: int)
++    requires
++        0 <= t,
++    ensures
++        2 * tri(t) == t * (t + 1),
++    decreases t,
++{
++    if t > 0 {
++        lemma_tri(t - 1);
++        let p = tri(t - 1);
++        assert(tri(t) == p + t);
++        assert(2 * (p + t) == t * (t + 1)) by (nonlinear_arith)
++            requires
++                2 * p == (t - 1) * ((t - 1) + 1),
++        ;
++    } else {
++        assert(t * (t + 1) == 0) by (nonlinear_arith)
++            requires
++                t == 0,
++        ;
++    }
++}
++
++/// The overflow budget of one `CHUNK_SIZE` chunk: 5552 groups fit in `u32`.
++pub proof fn lemma_b_vec_bound(t: int)
++    requires
++        0 <= t < 5552,
++    ensures
++        b_vec_bound(t) + (base() - 1) + 255 * (t + 1) == b_vec_bound(t + 1),
++        b_vec_bound(t + 1) <= u32::MAX,
++        0 <= b_vec_bound(t) <= b_vec_bound(t + 1),
++{
++    lemma_tri(t);
++    lemma_tri(t + 1);
++    assert(tri(t + 1) == tri(t) + (t + 1));
++    assert(b_vec_bound(t) == 65520 * (t + 1) + 255 * tri(t));
++    assert(b_vec_bound(t + 1) == 65520 * (t + 2) + 255 * tri(t + 1));
++    assert((t + 1) * (t + 2) <= 5552 * 5553) by (nonlinear_arith)
++        requires
++            0 <= t < 5552,
++    ;
++    assert(0 <= t * (t + 1)) by (nonlinear_arith)
++        requires
++            0 <= t,
++    ;
++}
++
++/// `x` is a multiple of `d` below `d`, so it is zero.
++pub proof fn lemma_small_mod_zero(x: int, d: int)
++    requires
++        0 <= x < d,
++        x % d == 0,
++    ensures
++        x == 0,
++{
++    vstd::arithmetic::div_mod::lemma_small_mod(x as nat, d as nat);
++}
++
++// ---------------------------------------------------------------- loop invariants of `compute`
++
++/// Lane `j` of `(a_vec, b_vec)` after `g` groups of `s`, `t` groups since the last reduction:
++/// congruent to the lane sums, and within the overflow budget.
++pub open spec fn lane_ok(av: Seq<u32>, bv: Seq<u32>, s: Seq<u8>, j: int, g: int, t: int) -> bool {
++    &&& av[j] <= (base() - 1) + 255 * t
++    &&& bv[j] <= b_vec_bound(t)
++    &&& (av[j] as int) % base() == lane_sum(s, j, g) % base()
++    &&& (bv[j] as int) % base() == lane_wsum(s, j, g) % base()
++}
++
++pub open spec fn lanes_partial(av: Seq<u32>, bv: Seq<u32>, s: Seq<u8>, g: int, t: int) -> bool {
++    &&& av.len() == 4
++    &&& bv.len() == 4
++    &&& 0 <= t <= 5552
++    &&& 0 <= g
++    &&& 4 * g <= s.len()
++    &&& forall|j: int| 0 <= j < 4 ==> #[trigger] lane_ok(av, bv, s, j, g, t)
++}
++
++/// Lanes right after a `%= MOD`: reduced and congruent to the lane sums.
++pub open spec fn lanes_reduced(av: Seq<u32>, bv: Seq<u32>, s: Seq<u8>, g: int) -> bool {
++    &&& lanes_partial(av, bv, s, g, 0)
++    &&& forall|j: int| 0 <= j < 4 ==> #[trigger] av[j] < base() && bv[j] < base()
++}
++
++pub proof fn lemma_lanes_zero(s: Seq<u8>)
++    ensures
++        forall|j: int| 0 <= j < 4 ==> #[trigger] lane_sum(s, j, 0) == 0 && lane_wsum(s, j, 0) == 0,
++{
++}
++
++/// One 4-byte group: the additions stay in `u32`, and the lanes advance to `g + 1`.
++pub proof fn lemma_lanes_partial_step(
++    av: Seq<u32>,
++    bv: Seq<u32>,
++    av2: Seq<u32>,
++    bv2: Seq<u32>,
++    s: Seq<u8>,
++    g: int,
++    t: int,
++)
++    requires
++        lanes_partial(av, bv, s, g, t),
++        t < 5552,
++        4 * g + 4 <= s.len(),
++        av2.len() == 4,
++        bv2.len() == 4,
++        forall|j: int| 0 <= j < 4 ==> #[trigger] av2[j] == av[j] + s[4 * g + j],
++        forall|j: int| 0 <= j < 4 ==> #[trigger] bv2[j] == bv[j] + av2[j],
++    ensures
++        lanes_partial(av2, bv2, s, g + 1, t + 1),
++{
++    lemma_b_vec_bound(t);
++    lemma_lane_step(s, g);
++    assert forall|j: int| 0 <= j < 4 implies #[trigger] lane_ok(av2, bv2, s, j, g + 1, t + 1) by {
++        assert(lane_ok(av, bv, s, j, g, t));
++        let x = s[4 * g + j] as int;
++        lemma_add_mod_noop(av[j] as int, x, base());
++        lemma_add_mod_noop(lane_sum(s, j, g), x, base());
++        lemma_add_mod_noop(bv[j] as int, av2[j] as int, base());
++        lemma_add_mod_noop(lane_wsum(s, j, g), lane_sum(s, j, g + 1), base());
++    }
++}
++
++/// The bounds that make one group's `a_vec += val; b_vec += a_vec` overflow-free.
++pub proof fn lemma_lanes_partial_bounds(av: Seq<u32>, bv: Seq<u32>, s: Seq<u8>, g: int, t: int)
++    requires
++        lanes_partial(av, bv, s, g, t),
++        t < 5552,
++        4 * g + 4 <= s.len(),
++    ensures
++        group_fits(av, bv, s, g, t, 0),
++        group_fits(av, bv, s, g, t, 1),
++        group_fits(av, bv, s, g, t, 2),
++        group_fits(av, bv, s, g, t, 3),
++{
++    lemma_b_vec_bound(t);
++    assert(lane_ok(av, bv, s, 0, g, t));
++    assert(lane_ok(av, bv, s, 1, g, t));
++    assert(lane_ok(av, bv, s, 2, g, t));
++    assert(lane_ok(av, bv, s, 3, g, t));
++}
++
++/// Lane `j` of group `g` can be added without overflowing `u32`.
++pub open spec fn group_fits(av: Seq<u32>, bv: Seq<u32>, s: Seq<u8>, g: int, t: int, j: int) -> bool {
++    &&& av[j] + s[4 * g + j] <= u32::MAX
++    &&& bv[j] + av[j] + s[4 * g + j] <= u32::MAX
++}
++
++pub proof fn lemma_lanes_to_partial(av: Seq<u32>, bv: Seq<u32>, s: Seq<u8>, g: int)
++    requires
++        lanes_reduced(av, bv, s, g),
++    ensures
++        lanes_partial(av, bv, s, g, 0),
++{
++}
++
++/// `a_vec %= MOD; b_vec %= MOD` re-establishes `lanes_reduced`.
++pub proof fn lemma_lanes_reduce(
++    av: Seq<u32>,
++    bv: Seq<u32>,
++    av2: Seq<u32>,
++    bv2: Seq<u32>,
++    s: Seq<u8>,
++    g: int,
++    t: int,
++)
++    requires
++        lanes_partial(av, bv, s, g, t),
++        av2.len() == 4,
++        bv2.len() == 4,
++        forall|j: int| 0 <= j < 4 ==> #[trigger] av2[j] == (av[j] as int) % base(),
++        forall|j: int| 0 <= j < 4 ==> #[trigger] bv2[j] == (bv[j] as int) % base(),
++    ensures
++        lanes_reduced(av2, bv2, s, g),
++{
++    assert(b_vec_bound(0) == base() - 1);
++    assert forall|j: int| 0 <= j < 4 implies #[trigger] lane_ok(av2, bv2, s, j, g, 0) && av2[j] < base()
++        && bv2[j] < base() by {
++        assert(lane_ok(av, bv, s, j, g, t));
++        lemma_mod_twice(av[j] as int, base());
++        lemma_mod_twice(bv[j] as int, base());
++    }
++}
++
++/// `b += k * a; b %= MOD` after `k` more bytes keeps `b ≡ b0 + (bytes so far) * a0`.
++pub proof fn lemma_b_chunk(b: int, b2: int, b0: int, a0: int, g_start: int, g: int, k: int)
++    requires
++        b % base() == (b0 + 4 * g_start * a0) % base(),
++        b2 == (b + k * a0) % base(),
++        4 * g == 4 * g_start + k,
++    ensures
++        b2 % base() == (b0 + 4 * g * a0) % base(),
++{
++    lemma_add_mod_noop(b, k * a0, base());
++    lemma_add_mod_noop(b0 + 4 * g_start * a0, k * a0, base());
++    lemma_mod_twice(b + k * a0, base());
++    assert(4 * g * a0 == 4 * g_start * a0 + k * a0) by (nonlinear_arith)
++        requires
++            4 * g == 4 * g_start + k,
++    ;
++}
++
++/// `v[0] + ... + v[k-1]`.
++pub open spec fn prefix_sum(v: Seq<u32>, k: int) -> int
++    decreases k,
++{
++    if k <= 0 {
++        0
++    } else {
++        prefix_sum(v, k - 1) + v[k - 1]
++    }
++}
++
++pub proof fn lemma_prefix_sum_bound(v: Seq<u32>, k: int, c: int)
++    requires
++        0 <= k <= 4,
++        v.len() == 4,
++        forall|j: int| 0 <= j < 4 ==> #[trigger] v[j] < c,
++    ensures
++        0 <= prefix_sum(v, k) <= 4 * c,
++{
++    reveal_with_fuel(prefix_sum, 5);
++    assert(v[0] < c && v[1] < c && v[2] < c && v[3] < c);
++}
++
++/// The final congruences of `compute`, combining the lane sums, the vector combine step and the
++/// serial tail.
++pub proof fn lemma_combine(
++    data: Seq<u8>,
++    al: Seq<u8>,
++    rem: Seq<u8>,
++    m: int,
++    a0: int,
++    b0: int,
++    b_red: int,
++    av0: Seq<u32>,
++    bv0: Seq<u32>,
++    bv1: Seq<u32>,
++    aa: int,
++    bb: int,
++)
++    requires
++        data == al + rem,
++        al.len() == 4 * m,
++        0 <= m,
++        0 <= a0,
++        0 <= b0,
++        lanes_reduced(av0, bv0, al, m),
++        b_red % base() == (b0 + 4 * m * a0) % base(),
++        bv1.len() == 4,
++        bv1[0] == 4 * bv0[0],
++        bv1[1] == 4 * bv0[1] + (base() - av0[1]),
++        bv1[2] == 4 * bv0[2] + (base() - av0[2]) * 2,
++        bv1[3] == 4 * bv0[3] + (base() - av0[3]) * 3,
++        aa == a0 + prefix_sum(av0, 4) + sum(rem),
++        bb == b_red + prefix_sum(bv1, 4) + rem.len() * (a0 + prefix_sum(av0, 4)) + wsum(rem),
++    ensures
++        aa % base() == (a0 + sum(data)) % base(),
++        bb % base() == (b0 + data.len() * a0 + wsum(data)) % base(),
++{
++    let r = rem.len() as int;
++    reveal_with_fuel(prefix_sum, 5);
++    lemma_lanes(al, m);
++    assert(al.take(4 * m) =~= al);
++    lemma_sum_append(al, rem);
++    let ls0 = lane_sum(al, 0, m);
++    let ls1 = lane_sum(al, 1, m);
++    let ls2 = lane_sum(al, 2, m);
++    let ls3 = lane_sum(al, 3, m);
++    let lw0 = lane_wsum(al, 0, m);
++    let lw1 = lane_wsum(al, 1, m);
++    let lw2 = lane_wsum(al, 2, m);
++    let lw3 = lane_wsum(al, 3, m);
++    assert(lane_ok(av0, bv0, al, 0, m, 0) && av0[0] < base() && bv0[0] < base());
++    assert(lane_ok(av0, bv0, al, 1, m, 0) && av0[1] < base() && bv0[1] < base());
++    assert(lane_ok(av0, bv0, al, 2, m, 0) && av0[2] < base() && bv0[2] < base());
++    assert(lane_ok(av0, bv0, al, 3, m, 0) && av0[3] < base() && bv0[3] < base());
++    // each reduced lane is its lane sum minus a multiple of 65521
++    let qa0 = lemma_mod_rep(av0[0] as int, ls0);
++    let qa1 = lemma_mod_rep(av0[1] as int, ls1);
++    let qa2 = lemma_mod_rep(av0[2] as int, ls2);
++    let qa3 = lemma_mod_rep(av0[3] as int, ls3);
++    let qb0 = lemma_mod_rep(bv0[0] as int, lw0);
++    let qb1 = lemma_mod_rep(bv0[1] as int, lw1);
++    let qb2 = lemma_mod_rep(bv0[2] as int, lw2);
++    let qb3 = lemma_mod_rep(bv0[3] as int, lw3);
++    // b_red is (b0 + 4m*a0) minus a multiple of 65521
++    let qr = lemma_mod_rep(b_red, b0 + 4 * m * a0);
++    let qa = qa0 + qa1 + qa2 + qa3;
++    let A = a0 + prefix_sum(av0, 4);
++    assert(A == a0 + lanes_sum(al, m) - 65521 * qa);
++    let k1 = 6 + qa1 + 2 * qa2 + 3 * qa3 - 4 * (qb0 + qb1 + qb2 + qb3) - qr;
++    assert(b_red + prefix_sum(bv1, 4) == b0 + 4 * m * a0 + lanes_wsum(al, m) + 65521 * k1);
++    assert(r * A == r * (a0 + lanes_sum(al, m)) - 65521 * (r * qa)) by (nonlinear_arith)
++        requires
++            A == a0 + lanes_sum(al, m) - 65521 * qa,
++    ;
++    assert(data.len() * a0 == 4 * m * a0 + r * a0) by (nonlinear_arith)
++        requires
++            data.len() == 4 * m + r,
++    ;
++    assert(r * (a0 + lanes_sum(al, m)) == r * a0 + r * sum(al)) by (nonlinear_arith)
++        requires
++            lanes_sum(al, m) == sum(al),
++    ;
++    // aa
++    assert(aa == 65521 * (-qa) + (a0 + sum(data)));
++    lemma_mod_multiples_vanish(-qa, a0 + sum(data), 65521);
++    // bb
++    assert(bb == 65521 * (k1 - r * qa) + (b0 + data.len() * a0 + wsum(data)));
++    lemma_mod_multiples_vanish(k1 - r * qa, b0 + data.len() * a0 + wsum(data), 65521);
++}
++
++/// `x` congruent to `y` means `y - x` is a multiple of `base()`; returns the multiplier.
++pub proof fn lemma_mod_rep(x: int, y: int) -> (q: int)
++    requires
++        x % base() == y % base(),
++    ensures
++        y - x == 65521 * q,
++{
++    lemma_fundamental_div_mod(y - x, 65521);
++    lemma_sub_mod_noop(y, x, 65521);
++    (y - x) / 65521
++}
++
++pub proof fn lemma_wsum_bound(s: Seq<u8>)
++    ensures
++        0 <= wsum(s) <= 255 * s.len() * s.len(),
++    decreases s.len(),
++{
++    if s.len() > 0 {
++        lemma_wsum_bound(s.drop_last());
++        lemma_sum_bounds(s);
++        let n = s.len() as int;
++        assert(255 * (n - 1) * (n - 1) + 255 * n <= 255 * n * n) by (nonlinear_arith)
++            requires
++                n >= 1,
++        ;
++    }
++}
++
++// ---------------------------------------------------------------- spec sanity
++
++/// The definition reproduces known checksums (evaluated by Verus's interpreter).
++proof fn adler32_test_vectors() {
++    assert(adler32_spec(seq![]) == 1) by (compute);
++    assert(adler32_spec(seq![0u8]) == 0x00010001) by (compute);
++    assert(adler32_spec(seq![1u8]) == 0x00020002) by (compute);
++    // "Wikipedia"
++    assert(adler32_spec(seq![0x57u8, 0x69, 0x6b, 0x69, 0x70, 0x65, 0x64, 0x69, 0x61])
++        == 0x11E60398) by (compute);
++}
++
++} // verus!
+--- /dev/null
++++ b/src/trusted.rs
+@@ -0,0 +1,70 @@
++//! TRUSTED declarations: seams to the Rust standard library that Verus cannot check.
++//! Compiled only under Verus (`cfg(verus_keep_ghost)`); contains no executable code.
++//!
++//! | id | item | why trusted |
++//! |----|------|-------------|
++//! | T1 | `<[T]>::chunks_exact` | vstd 0.2026.10.04 has no spec for `chunks_exact`/`ChunksExact` (Verus main has one only for `chunks`) |
++//! | T2 | `ChunksExact::remainder` | same |
++//! | T3 | `<ChunksExact as Iterator>::next` | same; vstd's `IteratorSpec` cannot be implemented for a core type outside vstd (orphan rule), so `for` loops over `ChunksExact` cannot be specified from this crate |
++//!
++//! The model mirrors vstd's own (equally trusted) specification of `<[T]>::chunks` on Verus main
++//! and the std documentation: `chunks_exact(n)` yields the `len / n` full chunks of `n` items in
++//! order, and `remainder()` is the last `len % n` items, independent of iteration progress.
++use core::slice::ChunksExact;
++use vstd::prelude::*;
++
++verus! {
++
++#[verifier::external_type_specification]
++#[verifier::external_body]
++#[verifier::accept_recursive_types(T)]
++pub struct ExChunksExact<'a, T: 'a>(ChunksExact<'a, T>);
++
++/// The items of the full chunks not yet returned by the iterator, concatenated.
++pub uninterp spec fn chunks_exact_rest<'a, T>(it: ChunksExact<'a, T>) -> Seq<T>;
++
++/// The chunk size the iterator was created with.
++pub uninterp spec fn chunks_exact_size<'a, T>(it: ChunksExact<'a, T>) -> usize;
++
++/// The items that do not fill a whole chunk (what `remainder()` returns).
++pub uninterp spec fn chunks_exact_rem<'a, T>(it: ChunksExact<'a, T>) -> Seq<T>;
++
++// T1
++pub assume_specification<'a, T>[ <[T]>::chunks_exact ](s: &'a [T], chunk_size: usize) -> (it:
++    ChunksExact<'a, T>)
++    requires
++        chunk_size > 0,
++    ensures
++        chunks_exact_size(it) == chunk_size,
++        chunks_exact_rest(it) == s@.take(s@.len() as int - (s@.len() as int) % (chunk_size as int)),
++        chunks_exact_rem(it) == s@.skip(s@.len() as int - (s@.len() as int) % (chunk_size as int)),
++;
++
++// T2
++pub assume_specification<'a, T>[ ChunksExact::<'a, T>::remainder ](it: &ChunksExact<'a, T>) -> (r:
++    &'a [T])
++    ensures
++        r@ == chunks_exact_rem(*it),
++;
++
++// T3
++pub assume_specification<'a, T>[ <ChunksExact<'a, T> as Iterator>::next ](
++    it: &mut ChunksExact<'a, T>,
++) -> (r: Option<&'a [T]>)
++    ensures
++        chunks_exact_size(*final(it)) == chunks_exact_size(*old(it)),
++        chunks_exact_rem(*final(it)) == chunks_exact_rem(*old(it)),
++        chunks_exact_rest(*old(it)).len() < chunks_exact_size(*old(it)) ==> {
++            &&& r is None
++            &&& chunks_exact_rest(*final(it)) == chunks_exact_rest(*old(it))
++        },
++        chunks_exact_rest(*old(it)).len() >= chunks_exact_size(*old(it)) ==> {
++            &&& r is Some
++            &&& r->Some_0@ == chunks_exact_rest(*old(it)).take(chunks_exact_size(*old(it)) as int)
++            &&& chunks_exact_rest(*final(it)) == chunks_exact_rest(*old(it)).skip(
++                chunks_exact_size(*old(it)) as int,
++            )
++        },
++;
++
++} // verus!
+--- /dev/null
++++ b/tests/trusted_model.rs
+@@ -0,0 +1,40 @@
++//! Runtime check of the trusted `ChunksExact` model in `src/trusted.rs` (T1-T3) against the
++//! real standard library. Verus cannot check those three specifications, so this test is the
++//! evidence that they describe what std does, for every length and chunk size in a range.
++
++fn check(len: usize, n: usize) {
++    let s: Vec<u8> = (0..len).map(|i| i as u8).collect();
++    let cut = len - len % n;
++
++    // T1: chunks_exact(n) holds rest = s[..cut] and rem = s[cut..].
++    let mut it = s.chunks_exact(n);
++    // T2: remainder() is s[cut..], before and during iteration.
++    assert_eq!(it.remainder(), &s[cut..]);
++
++    // T3: each next() returns the first n items of the rest, until fewer than n remain,
++    // then None (and stays None).
++    let mut rest: &[u8] = &s[..cut];
++    loop {
++        let r = it.next();
++        assert_eq!(it.remainder(), &s[cut..]);
++        if rest.len() < n {
++            assert!(r.is_none());
++            assert!(it.next().is_none());
++            break;
++        }
++        assert_eq!(r, Some(&rest[..n]));
++        rest = &rest[n..];
++    }
++}
++
++#[test]
++fn chunks_exact_model_matches_std() {
++    for n in [1, 2, 3, 4, 5, 7, 8, 16, 5552 * 4] {
++        for len in 0..200 {
++            check(len, n);
++        }
++        for len in [n * 3 - 1, n * 3, n * 3 + 1, 5552 * 4 * 2 + 3] {
++            check(len, n);
++        }
++    }
++}
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -2,30 +2,25 @@
+ name = "adler2"
+ version = "2.0.1"
+ authors = ["Jonas Schievink <jonasschievink@gmail.com>", "oyvindln <oyvindln@users.noreply.github.com>"]
+-description = "A simple clean-room implementation of the Adler-32 checksum"
+-documentation = "https://docs.rs/adler2/"
++description = "adler2 2.0.1 annotated for Verus; see ../VERIFICATION.md"
+ repository = "https://github.com/oyvindln/adler2"
+-keywords = ["checksum", "integrity", "hash", "adler32", "zlib"]
+-categories = ["algorithms"]
+ readme = "README.md"
+ license = "0BSD OR MIT OR Apache-2.0"
+ edition = "2021"
+-exclude = [".*"]
++publish = false
+ 
+ [[bench]]
+ name = "bench"
+ harness = false
+ 
+ [dependencies]
++# Supplies the `verus!` macro and `vstd::prelude` for plain `cargo build`/`cargo test`
++# (ghost code is erased). Matches Verus release 0.2026.10.04.426d8b0.
++vstd = { version = "=0.0.0-2026-10-04-0306", default-features = false }
+ # Internal features, only used when building as part of libstd, not part of the
+ # stable interface of this crate.
+ core = { version = '1.0.0', optional = true, package = 'rustc-std-workspace-core' }
+ 
+-[dev-dependencies]
+-## Messes with minimum rust version and drags in deps just for running tests
+-## so just comment out for now and enable manually when needed for enabling benches
+-## criterion = "0.3.2"
+-
+ [features]
+ # Disable default features to enable `#![no_std]` support.
+ default = ["std"]
+@@ -35,37 +30,8 @@
+ # stable interface of this crate.
+ rustc-dep-of-std = ['core']
+ 
++[package.metadata.verus]
++verify = true
+ 
+-[package.metadata.docs.rs]
+-rustdoc-args = [ "--cfg=docsrs" ]
+-
+-# cargo-release configuration
+-[package.metadata.release]
+-tag-message = "{{version}}"
+-no-dev-version = true
+-pre-release-commit-message = "Release {{version}}"
+-
+-# Change the changelog's `Unreleased` section to refer to this release and
+-# prepend a new `Unreleased` section
+-[[package.metadata.release.pre-release-replacements]]
+-file    = "CHANGELOG.md"
+-search  = "## Unreleased\n"
+-replace = """
+-## Unreleased
+-
+-No changes.
+-
+-## [{{version}} - {{date}}](https://github.com/jonas-schievink/adler/releases/tag/v{{version}})
+-"""
+-
+-# Bump the version inside the example manifest in `README.md`
+-[[package.metadata.release.pre-release-replacements]]
+-file    = "README.md"
+-search  = 'adler = "[a-z0-9\\.-]+"'
+-replace = 'adler = "{{version}}"'
+-
+-# Bump the version referenced by the `html_root_url` attribute in `lib.rs`
+-[[package.metadata.release.pre-release-replacements]]
+-file    = "src/lib.rs"
+-search  = "https://docs.rs/adler/[a-z0-9\\.-]+"
+-replace = "https://docs.rs/adler/{{version}}"
++[lints.rust]
++unexpected_cfgs = { level = "warn", check-cfg = ['cfg(verus_only)', 'cfg(verus_keep_ghost)', 'cfg(docsrs)'] }
