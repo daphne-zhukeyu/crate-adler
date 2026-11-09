@@ -1,4 +1,4 @@
-# adler2 2.0.1: verification status report (2026-11-04)
+# adler2 2.0.1: verification status report
 
 ## Summary 
 
@@ -14,7 +14,7 @@ and such an instance changes value on its first `write_slice` even when the slic
 machine-checks the source comment's claim that 5552 groups per chunk cannot overflow `u32`, for
 every starting state the type allows; 5553 is rejected.
 
-A hand-written gold spec of the public API (Daphne Zhu, blind, from RFC 1950 and the crate docs)
+A hand-written gold spec of the public API 
 was compared with Claude's spec as Verus refinement obligations in both directions, with Claude
 writing the linking proofs. The two specs cover 7 functions in common (`new`, `default`,
 `from_checksum`, `checksum`, `finish`, `write_slice`/`write`, `adler32_slice`). Claude's spec
@@ -43,8 +43,7 @@ benchmark and the write-up.
 
 ## Every claim above, with its evidence
 
-All paths are relative to `/home/zhukeyu/crate-adler2/`. Logs under `evidence/` record the exact
-command, its exit code and its full output; `evidence/INDEX.md` lists them.
+Logs under `evidence/` record the exact command, its exit code and its full output; `evidence/INDEX.md` lists them.
 
 | claim | evidence |
 |---|---|
@@ -80,10 +79,7 @@ findings: `VERIFICATION.md`.
 
 ## Pending 
 
-1. **Sign-off.** Tick the 20 lines in `evidence/code_changes/SIGNOFF.md` (proposals in
-   `REVIEW_NOTES.md`). The one that deserves real attention is C3 (the loop rewrite); the
-   assembly comparison is its evidence.
-2. **Adjudicate the `write_slice` disagreement.** Neither spec is wrong about the docs; the docs
+1. **Adjudicate the `write_slice` disagreement.** Neither spec is wrong about the docs; the docs
    are silent. The crate's actual behaviour is the reduce-on-every-write one. Decide whether the
    report calls this a doc gap (recommended: "`sum` must be a value returned by `checksum`") or a
    behaviour worth an upstream issue, and whether the gold spec should be revised (keep `.v1.rs`
@@ -91,7 +87,7 @@ findings: `VERIFICATION.md`.
 
 ## Spec comparison notes
 
-- Gold spec written 2026-11-08, frozen as `spec_compare/human_written_spec.v1.rs`. Claude's only
+- Gold spec frozen as `spec_compare/human_written_spec.v1.rs`. Claude's only
   edit to the working copy is in the `vectors()` proof fn: the `let`-bound intermediate values
   were inlined into the asserts, because `by (compute)` treats a `let`-bound variable as symbolic
   and the residue made the SMT solver run without terminating. No definition changed.
@@ -106,8 +102,7 @@ findings: `VERIFICATION.md`.
   `s1` before `s2`, packing `s2 * 65536 + s1`, `from_checksum` as the raw halves, `finish`
   zero-extended.
 
-## Caveats that belong in any honest version of this report
-
+## Caveats
 - "Verified" means the code meets Claude's spec. The spec's correctness rests on the four test
   vectors it reproduces and on its agreement with the independently written gold spec on every
   function, except the empty-write-from-non-canonical-state case discussed above.
@@ -115,5 +110,4 @@ findings: `VERIFICATION.md`.
   is unsound. The same model is what vstd itself assumes for `chunks` on Verus main.
 - The contracts are on concrete `Adler32` methods; generic `H: Hasher` callers don't see them.
 - The one executable rewrite (C3) is behaviour-preserving by assembly comparison on this
-  toolchain (rustc 1.98.1, x86-64, release). That is strong evidence, not a proof for all
-  compilers.
+  toolchain (rustc 1.98.1, x86-64, release). That is not a proof for all compilers.
