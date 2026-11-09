@@ -1,0 +1,11 @@
+[package]
+name = "bench_compare"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+up = { path = "up", package = "adler2_up" }
+ver = { path = "../adler2", package = "adler2" }
+
+[workspace]
