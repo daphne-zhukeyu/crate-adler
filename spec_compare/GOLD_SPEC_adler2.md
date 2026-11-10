@@ -1,6 +1,6 @@
-# Gold spec sheet: adler2 2.0.1
+# Human spec sheet: adler2 2.0.1
 
-General guide: `/home/zhukeyu/verus-tools/GOLD_SPEC_GUIDE.md`. Output file:
+General guide: `/home/zhukeyu/verus-tools/GOLD_SPEC_GUIDE.md` (workflow step 1). Output file:
 `human_written_spec.rs` in this directory.
 
 ## Read
@@ -15,15 +15,17 @@ General guide: `/home/zhukeyu/verus-tools/GOLD_SPEC_GUIDE.md`. Output file:
 | RFC 1950 §8.2, https://www.rfc-editor.org/rfc/rfc1950#section-8.2 | the algorithm | `s1 = 1 + D1 + … + Dn (mod 65521)`, `s2 = (1 + D1) + (1 + D1 + D2) + … (mod 65521)`, `Adler-32 = s2*65536 + s1`; the C reference code in the RFC is 10 lines |
 | https://en.wikipedia.org/wiki/Adler-32 | worked example | the "Wikipedia" computation, digit by digit |
 
-**Do not read `../upstream/src/algo.rs`.** It is the vectorised, chunked, deferred-modulo
-implementation. A spec transcribed from it would just restate the code. The RFC's two-line
-definition is the spec; the proof that `algo.rs` meets it is Claude's job and is the whole point.
+`../upstream/src/algo.rs` is the vectorised, chunked, deferred-modulo implementation. Read it to
+understand the crate, but do not transcribe it: a spec that restates the code cannot catch a bug
+in the code. The RFC's two-line definition is the spec; the proof that `algo.rs` meets it is
+Claude's job.
 
-## Do not read until the comparison is done
+## Claude's files
 
-`../adler2/src/*.rs` (all contain contracts), `../VERIFICATION.md`, `../REPORT.md`,
-`../evidence/DOC_REVIEW.md`, `../adler2/tests/doc_findings.rs`, `../negative_controls.py`,
-`links.rs` and `compare.rs` in this directory.
+The human spec is written before Claude's spec and proof exist (workflow steps 1 and 2). Where
+Claude's files are already present (`../adler2/src/*.rs` with their contracts,
+`../VERIFICATION.md`, `../SUMMARY.md`, `../evidence/`, `links.rs`), leave them until the
+comparison has run, so the human spec stays an independent reference.
 
 ## Functions to specify
 
@@ -54,8 +56,8 @@ Out of scope: `adler32<R: BufRead>` (unverified in the annotated crate; a 12-lin
 5. **`from_checksum` on a value that is not a checksum.** The docs say it takes "a precomputed
    Adler-32 checksum". A `u32` whose low or high 16 bits are ≥ 65521 is not one. Decide what
    your spec says the state is in that case, and what the next `write` does to it. Options: leave
-   it unspecified (a `recommends`), reduce it, or define the state as the raw halves. **Not blind:**
-   this case was discussed in chat on 2026-10-19 and is the one intent decision most worth your
+   it unspecified (a `recommends`), reduce it, or define the state as the raw halves. This case
+   was discussed in chat on 2026-10-19 and is the one intent decision most worth your
    independent view. Write what the docs would lead you to, then note whether that differs from
    what you already heard.
 6. **`finish`.** `u64::from(checksum())`: zero-extended, not sign-extended, not shifted.

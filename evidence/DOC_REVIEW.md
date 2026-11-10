@@ -7,7 +7,7 @@ check that backs the verdict. Line numbers refer to `upstream/src/lib.rs`. Runti
 | # | lines | doc claim | verdict | evidence |
 |---|---|---|---|---|
 | 1 | 7 | "Zero `unsafe`" | holds for executable code; the annotated crate relaxes `forbid` to `deny` so that Verus-only `trusted.rs` can hold `assume_specification` | `code_changes/CODE_CHANGES.md` (hunk C1, markers T1) |
-| 2 | 8 | "Decent performance (3-4 GB/s)" | understated on this machine (16.4 GB/s); not a correctness claim | `bench` section of REPORT.md |
+| 2 | 8 | "Decent performance (3-4 GB/s)" | understated on this machine (16.4 GB/s); not a correctness claim | `bench.log` row of SUMMARY.md |
 | 3 | 9 | `#![no_std]` support with `default-features = false` | holds | `verus_nostd.log`, `cargo_test_nostd.log` |
 | 4 | 31-33 | "An instance of this type is equivalent to an Adler-32 checksum ... created ... from a precalculated checksum via `from_checksum`" | **D1 (doc gap):** `from_checksum` also accepts values that are not Adler-32 checksums (either 16-bit half ≥ 65521). Such an instance reports the raw value from `checksum()` until the first `write_slice`, which reduces it mod 65521 even if the slice is empty: `0xFFFF_FFFF` → `0x000E_000E`. Nothing in the docs says so | `doc_findings.rs::d1_from_checksum_non_canonical_state`; spec `adler_from(a % 65521, b % 65521, …)` in `adler2/src/spec.rs` |
 | 5 | 35-38 | `Hasher` impl; "hash value depends on architecture endianness" (doc test, lines 73-79) | holds; the `Hasher` integer methods are std defaults over `to_ne_bytes` and are not part of the verified surface | doc test passes (`cargo_test.log`); VERIFICATION.md intent decision 3 |

@@ -1,6 +1,6 @@
 # Verifying `adler2` with Verus: results (2026-10-18)
 
-Crate: `adler2` 2.0.1 from crates.io (oyvindln/adler2; 593M downloads; also a dependency of `std` itself, through `miniz_oxide`). Verus **0.2026.10.04.426d8b0** (stable) on rustc 1.98.1, with vstd `=0.0.0-2026-10-04-0306`. The annotated crate is in [`adler2/`](adler2/), the pristine crates.io sources are in [`upstream/`](upstream/), and the diff between them is [`upstream.diff`](upstream.diff). Claude (Opus 5.5) wrote the specifications on 2026-10-18 from RFC 1950 §8.2 and the crate docs, before any human spec existed (see "Spec review" at the end).
+Crate: `adler2` 2.0.1 from crates.io (oyvindln/adler2; 593M downloads; also a dependency of `std` itself, through `miniz_oxide`). Verus **0.2026.10.04.426d8b0** (stable) on rustc 1.98.1, with vstd `=0.0.0-2026-10-04-0306`. The annotated crate is in [`adler2/`](adler2/), the pristine crates.io sources are in [`upstream/`](upstream/), and the diff between them is [`upstream.diff`](upstream.diff). Claude (Opus 5.5) wrote the specifications and proofs from RFC 1950 §8.2 and the crate docs; the human spec they were checked against is in [`spec_compare/`](spec_compare/) (see "Spec comparison" at the end).
 
 ## Headline
 
@@ -110,6 +110,10 @@ cd .. && VERUS=$(which verus) python3 -I negative_controls.py                   
 
 If `cargo build` has run in `adler2/`, run `cargo clean` before `cargo verus` (the two share `target/`, and a non-Verus vstd build there breaks `cargo verus`).
 
-## Spec review (protocol note)
+## Spec comparison
 
-Claude wrote the spec first. To keep a blind comparison possible, write `human_written_spec.rs` from RFC 1950 §8.2 (and the crate docs) *before* reading `adler2/src/spec.rs`. Only `adler_from`, `pack` and `adler32_spec` (the first ~50 lines of `spec.rs`) are the specification. The rest is proof machinery. The decisions most worth a second opinion: the reduction of non-canonical `from_checksum` states (intent decision 1) and treating `adler32<R: BufRead>` as out of scope.
+Only `adler_from`, `pack` and `adler32_spec` (the first ~50 lines of `spec.rs`) are the specification; the rest is proof machinery. The human spec of the public API is `spec_compare/human_written_spec.rs` (frozen as `.v1.rs`), written from RFC 1950 §8.2 and the crate docs. Given it, Claude's spec needed no amendment; Claude wrote the linking proofs in `spec_compare/links.rs`, and the equivalence script gives 6 of 7 functions in each direction (`evidence/SPEC_COMPARE.md`). The gap is the reduction of non-canonical `from_checksum` states on an empty write (intent decision 1): the human spec says no-op, the code and this spec reduce. `adler32<R: BufRead>` is outside both specs.
+
+### Amendments
+
+None to Claude's spec or proof. The only edit to the working copy of the human spec is inside its `vectors()` harness (`let`-bound values inlined so `by (compute)` can evaluate); `diff spec_compare/human_written_spec.v1.rs spec_compare/human_written_spec.rs` shows it.
